@@ -228,13 +228,6 @@ export const SoieProductSizeFormBanner: React.FC<{ className?: string }> = ({
               </p>
             </div>
           </div>
-
-          {/* Right: Sub-label & Verification indicator */}
-          <div className="flex items-center gap-2 self-start sm:self-center">
-            <div className="px-3 py-1.5 rounded-lg bg-black/25 backdrop-blur-xs border border-white/15 text-rose-100 text-xs font-medium tracking-wide">
-              
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -275,13 +275,15 @@ export const SHAPEWEAR_TYPES = [
 ] as const;
 
 export const BRA_WIRE_OPTIONS = [
-  'Wired Non wired',
+  'Wired',
   'Non Wired',
+  'Wired and Non Wired',
 ] as const;
 
 export const BRA_PADDING_OPTIONS = [
   'Padded',
   'Non Padded',
+  'Padded and Non Padded',
 ] as const;
 
 export const POPULAR_BRANDS = [

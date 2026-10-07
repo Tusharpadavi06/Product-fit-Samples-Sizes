@@ -72,6 +72,24 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
           </span>
         </div>
 
+        {primaryRecord.rawFormData?.samplesInterested &&
+          primaryRecord.rawFormData.samplesInterested.length > 0 && (
+            <div className="bg-amber-50/70 border border-amber-200/90 rounded-2xl p-3.5 flex items-center justify-between text-xs">
+              <div className="flex items-center gap-2 text-stone-800">
+                <Sparkles className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                <span>
+                  Sample Trial Requested:{' '}
+                  <strong className="text-stone-900 font-semibold">
+                    {primaryRecord.rawFormData.samplesInterested.join(', ')}
+                  </strong>
+                </span>
+              </div>
+              <span className="text-[10px] font-bold uppercase text-amber-900 bg-amber-200/70 px-2.5 py-0.5 rounded-full">
+                Sample Noted
+              </span>
+            </div>
+          )}
+
         {/* Brand Header */}
         <div className="flex items-center justify-between border-b border-stone-100 pb-4">
           <div className="flex items-center gap-3">

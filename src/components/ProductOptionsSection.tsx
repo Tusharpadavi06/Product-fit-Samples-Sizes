@@ -7,8 +7,9 @@ import {
   BRA_WIRE_OPTIONS,
   BRA_PADDING_OPTIONS,
 } from '../data/sizeCharts';
-import { FormDataState, BraPadding, BraWire, PantyType, PantyRise, ShapewearType } from '../types';
+import { FormDataState, BraPadding, BraWire } from '../types';
 import { Tag } from 'lucide-react';
+import { MultiSelectDropdown } from './MultiSelectDropdown';
 
 interface SpecificationsProps {
   formData: FormDataState;
@@ -84,26 +85,19 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
           />
         </div>
 
-        {/* Type (Column G) */}
+        {/* Bra Type (Column G) - Multiple selection */}
         <div>
-          <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
-            Bra Type <span className="text-rose-600">*</span>
-          </label>
-          <select
+          <MultiSelectDropdown
+            label="Bra Type"
+            required
+            placeholder="Select the Option"
+            options={BRA_TYPES}
             value={formData.braType}
-            onChange={(e) => onChange({ braType: e.target.value })}
-            className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 text-sm outline-none transition-all bg-white text-stone-800"
-          >
-            <option value="">Select the Option</option>
-            {BRA_TYPES.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
+            onChange={(val) => onChange({ braType: val })}
+          />
         </div>
 
-        {/* Padding (Column H) - Padded, Non Padded */}
+        {/* Padding (Column H) - Padded, Non Padded, Padded and Non Padded */}
         <div>
           <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
             Padding <span className="text-rose-600">*</span>
@@ -122,7 +116,7 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
           </select>
         </div>
 
-        {/* Wire (Column I) - Wired Non wired, Non Wired */}
+        {/* Wire (Column I) - Wired, Non Wired, Wired and Non Wired */}
         <div>
           <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
             Wire <span className="text-rose-600">*</span>
@@ -228,42 +222,28 @@ export const PantySpecifications: React.FC<SpecificationsProps> = ({
           />
         </div>
 
-        {/* Type (Column G) - Hipster, Brief, Boy shorts, Bikini, Thong */}
+        {/* Panty Type (Column G) - Multiple selection */}
         <div>
-          <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
-            Panty Type <span className="text-rose-600">*</span>
-          </label>
-          <select
+          <MultiSelectDropdown
+            label="Panty Type"
+            required
+            placeholder="Select the Option"
+            options={PANTY_TYPES}
             value={formData.pantyType}
-            onChange={(e) => onChange({ pantyType: e.target.value as PantyType })}
-            className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 text-sm outline-none transition-all bg-white text-stone-800"
-          >
-            <option value="">Select the Option</option>
-            {PANTY_TYPES.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
+            onChange={(val) => onChange({ pantyType: val })}
+          />
         </div>
 
-        {/* Rise (Column H) - High, Mid, Low */}
+        {/* Rise (Column H) - Multiple selection */}
         <div>
-          <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
-            Rise <span className="text-rose-600">*</span>
-          </label>
-          <select
+          <MultiSelectDropdown
+            label="Rise"
+            required
+            placeholder="Select the Option"
+            options={PANTY_RISES}
             value={formData.pantyRise}
-            onChange={(e) => onChange({ pantyRise: e.target.value as PantyRise })}
-            className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 text-sm outline-none transition-all bg-white text-stone-800"
-          >
-            <option value="">Select the Option</option>
-            {PANTY_RISES.map((rise) => (
-              <option key={rise} value={rise}>
-                {rise}
-              </option>
-            ))}
-          </select>
+            onChange={(val) => onChange({ pantyRise: val })}
+          />
         </div>
 
         {/* Preference if any (Column I) - MANUAL TYPING */}
@@ -353,23 +333,16 @@ export const ShapewearSpecifications: React.FC<SpecificationsProps> = ({
           />
         </div>
 
-        {/* Type (Column G) - Shaper shorts, Shaper Brief, Shaper Shaper dress */}
+        {/* Type (Column G) - Multiple selection */}
         <div className="sm:col-span-2 md:col-span-3">
-          <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
-            Type <span className="text-rose-600">*</span>
-          </label>
-          <select
+          <MultiSelectDropdown
+            label="Type"
+            required
+            placeholder="Select the Option"
+            options={SHAPEWEAR_TYPES}
             value={formData.shapewearType}
-            onChange={(e) => onChange({ shapewearType: e.target.value as ShapewearType })}
-            className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 text-sm outline-none transition-all bg-white text-stone-800"
-          >
-            <option value="">Select the Option</option>
-            {SHAPEWEAR_TYPES.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
+            onChange={(val) => onChange({ shapewearType: val })}
+          />
         </div>
 
         {/* Preference if any (Column H) - MANUAL TYPING */}

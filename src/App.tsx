@@ -28,6 +28,7 @@ import { ShapewearSizeCalculator } from './components/ShapewearSizeCalculator';
 import { GoogleSheetModal } from './components/GoogleSheetModal';
 import { SubmissionsDrawer } from './components/SubmissionsDrawer';
 import { SuccessReceipt } from './components/SuccessReceipt';
+import { SampleInterestModal } from './components/SampleInterestModal';
 import {
   getStoredSubmissions,
   getCustomWebhookUrl,
@@ -100,6 +101,7 @@ export default function App() {
   const [submittedRecords, setSubmittedRecords] = useState<SubmissionRecord[] | null>(null);
   const [showSheetModal, setShowSheetModal] = useState(false);
   const [showSubmissionsDrawer, setShowSubmissionsDrawer] = useState(false);
+  const [showSampleModal, setShowSampleModal] = useState(false);
   const [submissionsList, setSubmissionsList] = useState<SubmissionRecord[]>([]);
   const [hasWebhook, setHasWebhook] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
@@ -165,8 +167,12 @@ export default function App() {
         setFormError('Please select Rise (Select the Option).');
         return false;
       }
-      if (!formData.pantyHip && !formData.pantyWaist) {
-        setFormError('Please select Panty Size from the Hip / Waist chart.');
+      if (!formData.pantyHip) {
+        setFormError('Please complete Step 1: Select To Fit Hip (Cm) for Panty.');
+        return false;
+      }
+      if (!formData.pantyWaist) {
+        setFormError('Please complete Step 2: Select To Fit Waist (Cm) for Panty.');
         return false;
       }
     }
@@ -175,23 +181,47 @@ export default function App() {
         setFormError('Please select Shapewear Type (Select the Option).');
         return false;
       }
-      if (!formData.shapewearHip && !formData.shapewearWaist) {
-        setFormError('Please select Shapewear Size from the Hip / Waist chart.');
+      if (!formData.shapewearHip) {
+        setFormError('Please complete Step 1: Select To Fit Hip (cm) for Shapewear.');
+        return false;
+      }
+      if (!formData.shapewearWaist) {
+        setFormError('Please complete Step 2: Select To Fit Waist (cm) for Shapewear.');
         return false;
       }
     }
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Step 1: User clicks "Submit Fit Consultation" -> validate & open Sample Preference Modal
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
+    setShowSampleModal(true);
+  };
 
+  // Step 2: User answers sample question in new window -> Final submit to Google Sheet
+  const handleConfirmSampleSubmission = async (selectedSamples: string[]) => {
     setIsSubmitting(true);
     setFormError(null);
 
+    const sampleInterestBra = selectedSamples.includes('Bra');
+    const sampleInterestPanty = selectedSamples.includes('Panty');
+    const sampleInterestShapewear = selectedSamples.includes('Shapewear');
+
+    const finalFormData: FormDataState = {
+      ...formData,
+      samplesInterested: selectedSamples,
+      sampleInterestBra,
+      sampleInterestPanty,
+      sampleInterestShapewear,
+    };
+
+    setFormData(finalFormData);
+
     try {
-      const result = await submitConsultationToGoogleSheet(formData);
+      const result = await submitConsultationToGoogleSheet(finalFormData);
+      setShowSampleModal(false);
       setSubmittedRecords(result.records);
       setSubmissionsList(getStoredSubmissions());
     } catch (err: any) {
@@ -456,6 +486,15 @@ export default function App() {
           </p>
         </div>
       </footer>
+
+      {/* New Window Modal: Thank you message & Final Sample Interest Question */}
+      <SampleInterestModal
+        isOpen={showSampleModal}
+        onClose={() => setShowSampleModal(false)}
+        onConfirm={handleConfirmSampleSubmission}
+        isSubmitting={isSubmitting}
+        clientName={formData.name}
+      />
 
       {/* Background Modals & Drawers (hidden by default) */}
       <GoogleSheetModal

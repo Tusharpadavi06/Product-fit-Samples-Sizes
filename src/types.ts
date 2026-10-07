@@ -1,12 +1,12 @@
 export type ProductCategory = 'Bra' | 'Panty' | 'Shapewear';
 
-export type PantyType = 'Hipster' | 'Brief' | 'Boy shorts' | 'Bikini' | 'Thong';
-export type PantyRise = 'High' | 'Mid' | 'Low' | '';
+export type PantyType = string;
+export type PantyRise = string;
 
-export type ShapewearType = 'Shaper shorts' | 'Shaper Brief' | 'Shaper Shaper dress';
+export type ShapewearType = string;
 
-export type BraPadding = 'Padded' | 'Non Padded' | '';
-export type BraWire = 'Wired Non wired' | 'Non Wired' | 'Wired' | '';
+export type BraPadding = 'Padded' | 'Non Padded' | 'Padded and Non Padded' | '';
+export type BraWire = 'Wired' | 'Non Wired' | 'Wired and Non Wired' | '';
 
 export type BraCup = 'Cup B' | 'Cup C' | 'Cup D' | 'Cup DD' | 'Cup E' | 'Cup F';
 
@@ -79,6 +79,12 @@ export interface FormDataState {
   shapewearWaist: string;
   selectedShapewearSize: string | null;
   shapewearSoieSize: string;
+
+  // Final Sample Request Question
+  samplesInterested?: string[]; // ['Bra', 'Panty', 'Shapewear']
+  sampleInterestBra?: boolean;
+  sampleInterestPanty?: boolean;
+  sampleInterestShapewear?: boolean;
 
   // Aliases for active product view
   product?: ProductCategory;
