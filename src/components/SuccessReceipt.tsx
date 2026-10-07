@@ -1,19 +1,26 @@
 import React, { useEffect } from 'react';
 import { SubmissionRecord } from '../types';
+import { GOOGLE_SHEET_ID } from '../data/sizeCharts';
 import { SoieOriginalLogo } from './BrandLogos';
-import { CheckCircle2, RotateCcw, Printer, Sparkles } from 'lucide-react';
+import { CheckCircle2, RotateCcw, Printer, Sparkles, AlertCircle, Link } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface SuccessReceiptProps {
   records?: SubmissionRecord[];
   record?: SubmissionRecord;
+  hasWebhook?: boolean;
+  isAdmin?: boolean;
   onReset: () => void;
+  onOpenSheetSetup?: () => void;
 }
 
 export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
   records,
   record,
+  hasWebhook = false,
+  isAdmin = false,
   onReset,
+  onOpenSheetSetup,
 }) => {
   const allRecords = records && records.length > 0 ? records : record ? [record] : [];
   const primaryRecord = allRecords[0];
@@ -50,17 +57,57 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
           <span className="text-xs font-semibold uppercase tracking-widest text-rose-200 mb-1">
             Fit Consultation Complete
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold tracking-wide">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-wide">
             Consultation Successfully Recorded!
           </h2>
           <p className="text-xs text-rose-100 max-w-lg mt-1.5 leading-relaxed">
-            Client: <strong>{primaryRecord.name}</strong> · Logged to Google Sheet tabs:{' '}
+            Client: <strong>{primaryRecord.name}</strong> · Category:{' '}
             <strong>{allRecords.map((r) => r.product).join(', ')}</strong>
           </p>
         </div>
       </div>
 
       <div className="p-6 sm:p-8 space-y-6">
+        {/* Google Sheet Sync Status Alert */}
+        {hasWebhook ? (
+          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5 flex items-center justify-between text-xs">
+            <div className="flex items-center gap-2 text-emerald-900 font-medium">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+              <span>
+                Synchronized with Google Sheet (<code>{GOOGLE_SHEET_ID}</code>)
+              </span>
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">
+              Live Synced
+            </span>
+          </div>
+        ) : (
+          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs space-y-2">
+            <div className="flex items-start gap-2.5">
+              <AlertCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="font-bold text-amber-900">
+                  Data saved in browser memory · Google Sheet Webhook Pending Setup
+                </p>
+                <p className="text-amber-800 leading-relaxed text-[11px]">
+                  Google Sheet me data tabhi save hota hai jab aap Google Sheet me <strong>Apps Script Web App</strong> deploy karke uska link yahan jodte hain.
+                </p>
+              </div>
+            </div>
+            {(isAdmin || onOpenSheetSetup) && (
+              <div className="pt-1 flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={onOpenSheetSetup}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold text-xs transition-colors cursor-pointer"
+                >
+                  <Link className="w-3.5 h-3.5" />
+                  <span>Connect Google Apps Script Webhook Now</span>
+                </button>
+              </div>
+            )}
+          </div>
+        )}
         {/* Brand Header */}
         <div className="flex items-center justify-between border-b border-stone-100 pb-4">
           <div className="flex items-center gap-3">

@@ -103,7 +103,7 @@ export default function App() {
   const [showSheetModal, setShowSheetModal] = useState(false);
   const [showSubmissionsDrawer, setShowSubmissionsDrawer] = useState(false);
   const [submissionsList, setSubmissionsList] = useState<SubmissionRecord[]>([]);
-  const [, setHasWebhook] = useState(false);
+  const [hasWebhook, setHasWebhook] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
   // Check if admin mode is requested via URL query param (?admin=true)
@@ -198,7 +198,13 @@ export default function App() {
       {/* Main Google Form-Style Container (Top header removed per user request, starts directly with Google Form card and professional header banner) */}
       <main className="flex-1 max-w-4xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-6">
         {submittedRecords ? (
-          <SuccessReceipt records={submittedRecords} onReset={handleResetForm} />
+          <SuccessReceipt
+            records={submittedRecords}
+            hasWebhook={hasWebhook}
+            isAdmin={isAdmin}
+            onReset={handleResetForm}
+            onOpenSheetSetup={() => setShowSheetModal(true)}
+          />
         ) : (
           <div className="space-y-4">
             {/* Form Wrapper */}
