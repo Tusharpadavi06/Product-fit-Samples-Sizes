@@ -247,7 +247,7 @@ export default function App() {
                       Intimate Wear Fit Consultation &amp; Sizing Form
                     </h2>
                     <p className="text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
-                      Experience precision intimate wear sizing tailored by <strong>SOIE by Ginza Industries Limited</strong>. Complete this consultation form to find your verified SOIE sizes across Bra, Panty, and Shapewear.
+                      Experience precision intimate wear sizing tailored by <strong>SOIE by Ginza Industries Limited</strong>.
                     </p>
                   </div>
 
