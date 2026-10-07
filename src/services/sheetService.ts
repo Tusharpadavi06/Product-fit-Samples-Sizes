@@ -22,14 +22,14 @@ export function mapBraToSheetColumns(data: FormDataState) {
     colE_Brands: data.braBrandsYouUse || data.brandsYouUse || 'SOIE',
     colF_StyleNumber: data.braStyleNumber || data.styleNumber || 'N/A',
     colG_Type: data.braType || 'N/A',
-    colH_Padding: data.braPadding || 'Padded',
-    colI_Wire: data.braWire || 'Non Wired',
+    colH_Padding: data.braPadding || 'N/A',
+    colI_Wire: data.braWire || 'N/A',
     colJ_Preference: data.braPreference || data.preference || 'None',
-    colK_Underbust: data.underbustCm || '73-77',
-    colL_Overbust: data.overbustCm || '91-93',
+    colK_Underbust: data.underbustCm || 'N/A',
+    colL_Overbust: data.overbustCm || 'N/A',
     colM_Contact: data.contactNumber,
     colN_Email: data.emailId,
-    colO_SoieSize: data.braSoieSize || data.soieSize || '34C',
+    colO_SoieSize: data.braSoieSize || data.soieSize || 'N/A',
   };
 }
 
@@ -47,17 +47,17 @@ export function mapPantyToSheetColumns(data: FormDataState) {
     timestamp,
     colB_Name: data.name,
     colC_Product: 'Panty',
-    colD_Size: data.pantyCurrentSize || 'M',
+    colD_Size: data.pantyCurrentSize || 'N/A',
     colE_Brands: data.pantyBrandsYouUse || 'SOIE',
     colF_StyleNumber: data.pantyStyleNumber || 'N/A',
     colG_Type: data.pantyType || 'N/A',
-    colH_Rise: data.pantyRise || 'Mid',
+    colH_Rise: data.pantyRise || 'N/A',
     colI_Preference: data.pantyPreference || 'None',
-    colJ_AllRoundHip: data.pantyHip || '36-38 in',
-    colK_AllRoundWaist: data.pantyWaist || '71.12 cm',
+    colJ_AllRoundHip: data.pantyHip || 'N/A',
+    colK_AllRoundWaist: data.pantyWaist || 'N/A',
     colL_Contact: data.contactNumber,
     colM_Email: data.emailId,
-    colN_SoieSize: data.pantySoieSize || data.selectedPantySize || 'M',
+    colN_SoieSize: data.pantySoieSize || data.selectedPantySize || 'N/A',
   };
 }
 
@@ -75,16 +75,16 @@ export function mapShapewearToSheetColumns(data: FormDataState) {
     timestamp,
     colB_Name: data.name,
     colC_Product: 'Shapewear',
-    colD_Size: data.shapewearCurrentSize || 'M',
+    colD_Size: data.shapewearCurrentSize || 'N/A',
     colE_Brands: data.shapewearBrandsYouUse || 'SOIE',
     colF_StyleNumber: data.shapewearStyleNumber || 'N/A',
     colG_Type: data.shapewearType || 'N/A',
     colH_Preference: data.shapewearPreference || 'None',
-    colI_AllRoundHip: data.shapewearHip || '38 in',
-    colJ_AllRoundWaist: data.shapewearWaist || '30 in',
+    colI_AllRoundHip: data.shapewearHip || 'N/A',
+    colJ_AllRoundWaist: data.shapewearWaist || 'N/A',
     colK_Contact: data.contactNumber,
     colL_Email: data.emailId,
-    colM_SoieSize: data.shapewearSoieSize || data.selectedShapewearSize || 'M',
+    colM_SoieSize: data.shapewearSoieSize || data.selectedShapewearSize || 'N/A',
   };
 }
 
@@ -107,11 +107,18 @@ export function saveSubmissionsLocally(records: SubmissionRecord[]): void {
   }
 }
 
+const DEFAULT_WEBHOOK_URL = '';
+
 export function getCustomWebhookUrl(): string {
   try {
-    return localStorage.getItem(WEBHOOK_URL_KEY) || '';
+    return (
+      localStorage.getItem(WEBHOOK_URL_KEY) ||
+      (import.meta as any).env?.VITE_GOOGLE_APPS_SCRIPT_URL ||
+      DEFAULT_WEBHOOK_URL ||
+      ''
+    );
   } catch {
-    return '';
+    return DEFAULT_WEBHOOK_URL;
   }
 }
 

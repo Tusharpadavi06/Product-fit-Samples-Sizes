@@ -1,26 +1,19 @@
 import React, { useEffect } from 'react';
 import { SubmissionRecord } from '../types';
-import { GOOGLE_SHEET_ID } from '../data/sizeCharts';
 import { SoieOriginalLogo } from './BrandLogos';
-import { CheckCircle2, RotateCcw, Printer, Sparkles, AlertCircle, Link } from 'lucide-react';
+import { CheckCircle2, RotateCcw, Printer, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface SuccessReceiptProps {
   records?: SubmissionRecord[];
   record?: SubmissionRecord;
-  hasWebhook?: boolean;
-  isAdmin?: boolean;
   onReset: () => void;
-  onOpenSheetSetup?: () => void;
 }
 
 export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
   records,
   record,
-  hasWebhook = false,
-  isAdmin = false,
   onReset,
-  onOpenSheetSetup,
 }) => {
   const allRecords = records && records.length > 0 ? records : record ? [record] : [];
   const primaryRecord = allRecords[0];
@@ -68,46 +61,17 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
       </div>
 
       <div className="p-6 sm:p-8 space-y-6">
-        {/* Google Sheet Sync Status Alert */}
-        {hasWebhook ? (
-          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5 flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2 text-emerald-900 font-medium">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-              <span>
-                Synchronized with Google Sheet (<code>{GOOGLE_SHEET_ID}</code>)
-              </span>
-            </div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">
-              Live Synced
-            </span>
+        {/* Clean Consultation Confirmation Banner (Zero Google Sheet mentions/warnings) */}
+        <div className="bg-rose-50/80 border border-rose-200/90 rounded-2xl p-4 flex items-center justify-between text-xs">
+          <div className="flex items-center gap-2.5 text-stone-800 font-medium">
+            <CheckCircle2 className="w-4 h-4 text-rose-600 flex-shrink-0" />
+            <span>Your consultation record has been confirmed and saved.</span>
           </div>
-        ) : (
-          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs space-y-2">
-            <div className="flex items-start gap-2.5">
-              <AlertCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
-              <div className="space-y-1">
-                <p className="font-bold text-amber-900">
-                  Data saved in browser memory · Google Sheet Webhook Pending Setup
-                </p>
-                <p className="text-amber-800 leading-relaxed text-[11px]">
-                  Google Sheet me data tabhi save hota hai jab aap Google Sheet me <strong>Apps Script Web App</strong> deploy karke uska link yahan jodte hain.
-                </p>
-              </div>
-            </div>
-            {(isAdmin || onOpenSheetSetup) && (
-              <div className="pt-1 flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={onOpenSheetSetup}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold text-xs transition-colors cursor-pointer"
-                >
-                  <Link className="w-3.5 h-3.5" />
-                  <span>Connect Google Apps Script Webhook Now</span>
-                </button>
-              </div>
-            )}
-          </div>
-        )}
+          <span className="text-[10px] font-bold uppercase tracking-wider text-rose-800 bg-rose-200/70 px-2.5 py-0.5 rounded-full">
+            Confirmed
+          </span>
+        </div>
+
         {/* Brand Header */}
         <div className="flex items-center justify-between border-b border-stone-100 pb-4">
           <div className="flex items-center gap-3">
@@ -151,7 +115,7 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
               </div>
 
               <div className="mt-3 pt-2 border-t border-stone-800 text-[10px] text-stone-400 font-mono">
-                Tab: "{rec.product}" · Saved
+                {rec.product} · Recommended Size
               </div>
             </div>
           ))}
@@ -166,7 +130,7 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
             <div className="flex items-center justify-between border-b border-stone-200/80 pb-2">
               <h4 className="font-bold text-stone-900 uppercase tracking-wider text-xs flex items-center gap-2">
                 <Sparkles className="w-3.5 h-3.5 text-rose-600" />
-                {rec.product} Details (Destination Tab: "{rec.product}")
+                {rec.product} Fit Details
               </h4>
               <span className="font-mono text-[10px] text-stone-500">{rec.id}</span>
             </div>

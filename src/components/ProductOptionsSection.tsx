@@ -108,22 +108,18 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
           <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
             Padding <span className="text-rose-600">*</span>
           </label>
-          <div className="grid grid-cols-2 gap-2">
+          <select
+            value={formData.braPadding}
+            onChange={(e) => onChange({ braPadding: e.target.value as BraPadding })}
+            className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 text-sm outline-none transition-all bg-white text-stone-800"
+          >
+            <option value="">Select the Option</option>
             {BRA_PADDING_OPTIONS.map((pad) => (
-              <button
-                type="button"
-                key={pad}
-                onClick={() => onChange({ braPadding: pad as BraPadding })}
-                className={`py-2 px-2.5 rounded-lg border text-xs font-semibold text-center transition-all cursor-pointer ${
-                  formData.braPadding === pad
-                    ? 'bg-rose-50 border-rose-600 text-rose-900 ring-1 ring-rose-400 font-bold'
-                    : 'bg-stone-50 hover:bg-stone-100 border-stone-200 text-stone-700'
-                }`}
-              >
+              <option key={pad} value={pad}>
                 {pad}
-              </button>
+              </option>
             ))}
-          </div>
+          </select>
         </div>
 
         {/* Wire (Column I) - Wired Non wired, Non Wired */}
@@ -131,22 +127,18 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
           <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
             Wire <span className="text-rose-600">*</span>
           </label>
-          <div className="grid grid-cols-2 gap-2">
+          <select
+            value={formData.braWire}
+            onChange={(e) => onChange({ braWire: e.target.value as BraWire })}
+            className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 text-sm outline-none transition-all bg-white text-stone-800"
+          >
+            <option value="">Select the Option</option>
             {BRA_WIRE_OPTIONS.map((w) => (
-              <button
-                type="button"
-                key={w}
-                onClick={() => onChange({ braWire: w as BraWire })}
-                className={`py-2 px-2 rounded-lg border text-xs font-semibold text-center transition-all cursor-pointer ${
-                  formData.braWire === w
-                    ? 'bg-rose-50 border-rose-600 text-rose-900 ring-1 ring-rose-400 font-bold'
-                    : 'bg-stone-50 hover:bg-stone-100 border-stone-200 text-stone-700'
-                }`}
-              >
+              <option key={w} value={w}>
                 {w}
-              </button>
+              </option>
             ))}
-          </div>
+          </select>
         </div>
 
         {/* Preference if any (Column J) - MANUAL TYPING */}
@@ -260,22 +252,18 @@ export const PantySpecifications: React.FC<SpecificationsProps> = ({
           <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
             Rise <span className="text-rose-600">*</span>
           </label>
-          <div className="grid grid-cols-3 gap-2">
+          <select
+            value={formData.pantyRise}
+            onChange={(e) => onChange({ pantyRise: e.target.value as PantyRise })}
+            className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 text-sm outline-none transition-all bg-white text-stone-800"
+          >
+            <option value="">Select the Option</option>
             {PANTY_RISES.map((rise) => (
-              <button
-                type="button"
-                key={rise}
-                onClick={() => onChange({ pantyRise: rise as PantyRise })}
-                className={`py-2 px-2 rounded-lg border text-xs font-semibold text-center transition-all cursor-pointer ${
-                  formData.pantyRise === rise
-                    ? 'bg-rose-50 border-rose-600 text-rose-900 ring-1 ring-rose-400 font-bold'
-                    : 'bg-stone-50 hover:bg-stone-100 border-stone-200 text-stone-700'
-                }`}
-              >
+              <option key={rise} value={rise}>
                 {rise}
-              </button>
+              </option>
             ))}
-          </div>
+          </select>
         </div>
 
         {/* Preference if any (Column I) - MANUAL TYPING */}

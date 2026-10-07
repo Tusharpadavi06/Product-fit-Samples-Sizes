@@ -13,20 +13,85 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
   formData,
   onChange,
 }) => {
-  const selectedSize = formData.pantySoieSize || formData.selectedPantySize || 'M';
+  // Helper to match Hip string
+  const getHipStr = (row: PantySizeRow) => `${row.hipCmMin} - ${row.hipCmMax} cm`;
+  const getWaistStr = (row: PantySizeRow) => `${row.waistCm} cm`;
 
-  const handleSelectPantyRow = (row: PantySizeRow) => {
-    const hipStr = `${row.hipCmMin}-${row.hipCmMax} cm`;
-    const waistStr = `${row.waistCm} cm`;
+  // Find currently selected hip row and waist row
+  const selectedHipRow = PANTY_SIZE_CHART.find(
+    (r) => formData.pantyHip === getHipStr(r)
+  );
+  const selectedWaistRow = PANTY_SIZE_CHART.find(
+    (r) => formData.pantyWaist === getWaistStr(r)
+  );
+
+  // Compute recommended size
+  const computeSize = (hipRow?: PantySizeRow, waistRow?: PantySizeRow): string => {
+    if (hipRow && waistRow) {
+      if (hipRow.size === waistRow.size) return hipRow.size;
+      return `${hipRow.size} / ${waistRow.size}`;
+    }
+    if (hipRow) return hipRow.size;
+    if (waistRow) return waistRow.size;
+    return '';
+  };
+
+  // 1. User clicks Hip cell: selects Hip, and if Waist not set (or user clicking Hip to select matched set), syncs Waist too
+  const handleSelectHip = (row: PantySizeRow, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    const hipStr = getHipStr(row);
+    // If waist not set yet, or user wants matched pair, set waist to row's waist
+    const targetWaistRow = selectedWaistRow || row;
+    const waistStr = selectedWaistRow ? formData.pantyWaist : getWaistStr(row);
+    const newSize = computeSize(row, targetWaistRow);
 
     onChange({
-      selectedPantySize: row.size,
-      pantySoieSize: row.size,
       pantyHip: hipStr,
       pantyWaist: waistStr,
-      soieSize: row.size,
+      selectedPantySize: newSize,
+      pantySoieSize: newSize,
+      soieSize: newSize,
     });
   };
+
+  // 2. User clicks Waist cell: selects Waist independently (or syncs Hip if not set)
+  const handleSelectWaist = (row: PantySizeRow, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    const waistStr = getWaistStr(row);
+    const targetHipRow = selectedHipRow || row;
+    const hipStr = selectedHipRow ? formData.pantyHip : getHipStr(row);
+    const newSize = computeSize(targetHipRow, row);
+
+    onChange({
+      pantyHip: hipStr,
+      pantyWaist: waistStr,
+      selectedPantySize: newSize,
+      pantySoieSize: newSize,
+      soieSize: newSize,
+    });
+  };
+
+  // 3. User clicks entire row: selects BOTH Hip and Waist from this row
+  const handleSelectFullRow = (row: PantySizeRow) => {
+    const hipStr = getHipStr(row);
+    const waistStr = getWaistStr(row);
+    const newSize = row.size;
+
+    onChange({
+      pantyHip: hipStr,
+      pantyWaist: waistStr,
+      selectedPantySize: newSize,
+      pantySoieSize: newSize,
+      soieSize: newSize,
+    });
+  };
+
+  const calculatedSize =
+    formData.pantySoieSize ||
+    computeSize(selectedHipRow, selectedWaistRow) ||
+    '';
+
+  const hasAnySelection = !!(formData.pantyHip || formData.pantyWaist);
 
   return (
     <div className="bg-white p-5 sm:p-6 rounded-2xl border border-stone-200 shadow-xs space-y-4">
@@ -36,7 +101,7 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
           Select Your Panty Size (Tap Any Option to Highlight &amp; Lock)
         </h3>
         <p className="text-xs text-stone-600 mt-0.5">
-          Select based on To Fit Hip (Cm) and To Fit Waist (Cm) to lock your recommended SOIE panty size
+          Tap Hip or Waist to select both together, or tap different options from each column for customized fit.
         </p>
       </div>
 
@@ -47,38 +112,74 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
           <PantyMeasurementPhoto size="sm" />
         </div>
 
-        {/* Right: Only To Fit Hip (Cm) & To Fit Waist (Cm) */}
+        {/* Right: Dual Selectable Columns: To Fit Hip (Cm) & To Fit Waist (Cm) */}
         <div className="lg:col-span-8 space-y-3">
           <div className="overflow-x-auto rounded-xl border border-stone-200">
             <table className="w-full text-center border-collapse">
               <thead>
                 <tr className="bg-rose-100/90 text-stone-900 border-b border-rose-200 text-xs font-semibold">
-                  <th className="py-2.5 px-4 border-r border-rose-200">To Fit Hip (Cm)</th>
-                  <th className="py-2.5 px-4">To Fit Waist (Cm)</th>
+                  <th className="py-2.5 px-3 border-r border-rose-200">
+                    To Fit Hip (Cm)
+                    <span className="block text-[10px] font-normal text-rose-800">
+                      (Tap to choose Hip)
+                    </span>
+                  </th>
+                  <th className="py-2.5 px-3">
+                    To Fit Waist (Cm)
+                    <span className="block text-[10px] font-normal text-rose-800">
+                      (Tap to choose Waist)
+                    </span>
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-200 text-xs">
                 {PANTY_SIZE_CHART.map((row) => {
-                  const isSelected = selectedSize === row.size;
+                  const hipVal = getHipStr(row);
+                  const waistVal = getWaistStr(row);
+                  const isHipSelected = formData.pantyHip === hipVal;
+                  const isWaistSelected = formData.pantyWaist === waistVal;
+                  const isBothSelected = isHipSelected && isWaistSelected;
 
                   return (
                     <tr
                       key={row.size}
-                      onClick={() => handleSelectPantyRow(row)}
+                      onClick={() => handleSelectFullRow(row)}
                       className={`transition-all cursor-pointer ${
-                        isSelected
-                          ? 'bg-rose-600 text-white font-semibold ring-2 ring-inset ring-rose-700'
-                          : 'hover:bg-rose-50/50 text-stone-700 bg-white'
+                        isBothSelected
+                          ? 'bg-rose-50/80'
+                          : 'hover:bg-stone-50 bg-white'
                       }`}
                     >
-                      <td className="py-2.5 px-4 border-r border-stone-200 text-xs sm:text-sm font-medium">
-                        <div className="flex items-center justify-center gap-2">
+                      {/* 1. To Fit Hip (Cm) Cell */}
+                      <td
+                        onClick={(e) => handleSelectHip(row, e)}
+                        className={`py-2 px-3 border-r border-stone-200 text-xs sm:text-sm font-medium transition-all ${
+                          isHipSelected
+                            ? 'bg-rose-600 text-white font-bold ring-2 ring-inset ring-rose-700 shadow-2xs'
+                            : 'hover:bg-rose-100/60 text-stone-800'
+                        }`}
+                        title="Click to select this Hip measurement"
+                      >
+                        <div className="flex items-center justify-center gap-1.5">
                           <span>{row.hipCmMin} - {row.hipCmMax} cm</span>
-                          {isSelected && <Check className="w-3.5 h-3.5 text-white stroke-[3]" />}
+                          {isHipSelected && <Check className="w-3.5 h-3.5 text-white stroke-[3] flex-shrink-0" />}
                         </div>
                       </td>
-                      <td className="py-2.5 px-4 text-xs sm:text-sm font-medium">
-                        {row.waistCm} cm
+
+                      {/* 2. To Fit Waist (Cm) Cell */}
+                      <td
+                        onClick={(e) => handleSelectWaist(row, e)}
+                        className={`py-2 px-3 text-xs sm:text-sm font-medium transition-all ${
+                          isWaistSelected
+                            ? 'bg-rose-600 text-white font-bold ring-2 ring-inset ring-rose-700 shadow-2xs'
+                            : 'hover:bg-rose-100/60 text-stone-800'
+                        }`}
+                        title="Click to select this Waist measurement"
+                      >
+                        <div className="flex items-center justify-center gap-1.5">
+                          <span>{row.waistCm} cm</span>
+                          {isWaistSelected && <Check className="w-3.5 h-3.5 text-white stroke-[3] flex-shrink-0" />}
+                        </div>
                       </td>
                     </tr>
                   );
@@ -92,12 +193,18 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
               <div className="text-xs sm:text-sm font-medium flex items-center gap-2">
                 <span className="text-stone-300">Recommended SOIE Size:</span>
-                <span className="text-lg sm:text-xl text-rose-300 font-bold tracking-tight bg-stone-800 px-2 py-0.5 rounded-md border border-stone-700">
-                  {selectedSize}
+                <span className="text-lg sm:text-xl text-rose-300 font-bold tracking-tight bg-stone-800 px-2.5 py-0.5 rounded-md border border-stone-700">
+                  {calculatedSize || '—'}
                 </span>
               </div>
               <div className="text-xs text-stone-300 font-normal">
-                Panty Size: {selectedSize} (Hip: {formData.pantyHip || '89-97 cm'} · Waist: {formData.pantyWaist || '71.12 cm'})
+                {hasAnySelection ? (
+                  <span>
+                    Panty Size: {calculatedSize} (Hip: {formData.pantyHip || 'Pending'} · Waist: {formData.pantyWaist || 'Pending'})
+                  </span>
+                ) : (
+                  <span>Tap any Hip or Waist option above to lock recommended size</span>
+                )}
               </div>
             </div>
           </div>

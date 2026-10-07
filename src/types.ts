@@ -1,12 +1,12 @@
 export type ProductCategory = 'Bra' | 'Panty' | 'Shapewear';
 
 export type PantyType = 'Hipster' | 'Brief' | 'Boy shorts' | 'Bikini' | 'Thong';
-export type PantyRise = 'High' | 'Mid' | 'Low';
+export type PantyRise = 'High' | 'Mid' | 'Low' | '';
 
 export type ShapewearType = 'Shaper shorts' | 'Shaper Brief' | 'Shaper Shaper dress';
 
-export type BraPadding = 'Padded' | 'Non Padded';
-export type BraWire = 'Wired Non wired' | 'Non Wired' | 'Wired';
+export type BraPadding = 'Padded' | 'Non Padded' | '';
+export type BraWire = 'Wired Non wired' | 'Non Wired' | 'Wired' | '';
 
 export type BraCup = 'Cup B' | 'Cup C' | 'Cup D' | 'Cup DD' | 'Cup E' | 'Cup F';
 

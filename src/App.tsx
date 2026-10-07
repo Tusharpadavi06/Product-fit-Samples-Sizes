@@ -40,8 +40,6 @@ import {
   CheckSquare,
   Square,
   Sparkles,
-  Database,
-  Table,
 } from 'lucide-react';
 
 const INITIAL_FORM_DATA: FormDataState = {
@@ -59,26 +57,26 @@ const INITIAL_FORM_DATA: FormDataState = {
   braBrandsYouUse: '',
   braStyleNumber: '',
   braType: '',
-  braPadding: 'Padded',
-  braWire: 'Non Wired',
+  braPadding: '',
+  braWire: '',
   braPreference: '',
-  underbustCm: '75',
-  overbustCm: '92',
-  selectedBraBand: 34,
-  selectedBraCup: 'Cup C',
-  braSoieSize: '34C',
+  underbustCm: '',
+  overbustCm: '',
+  selectedBraBand: null,
+  selectedBraCup: null,
+  braSoieSize: '',
 
   // Panty Specific
   pantyCurrentSize: '',
   pantyBrandsYouUse: '',
   pantyStyleNumber: '',
   pantyType: '',
-  pantyRise: PANTY_RISES[1],
+  pantyRise: '',
   pantyPreference: '',
-  pantyHip: '36-38 in (89-97 cm)',
-  pantyWaist: '71.12 cm (28")',
-  selectedPantySize: 'M',
-  pantySoieSize: 'M',
+  pantyHip: '',
+  pantyWaist: '',
+  selectedPantySize: null,
+  pantySoieSize: '',
 
   // Shapewear Specific
   shapewearCurrentSize: '',
@@ -86,14 +84,14 @@ const INITIAL_FORM_DATA: FormDataState = {
   shapewearStyleNumber: '',
   shapewearType: '',
   shapewearPreference: '',
-  shapewearHip: '38 in',
-  shapewearWaist: '30 in',
-  selectedShapewearSize: 'M',
-  shapewearSoieSize: 'M',
+  shapewearHip: '',
+  shapewearWaist: '',
+  selectedShapewearSize: null,
+  shapewearSoieSize: '',
 
   // Fallbacks
   product: 'Bra',
-  soieSize: '34C',
+  soieSize: '',
 };
 
 export default function App() {
@@ -105,9 +103,6 @@ export default function App() {
   const [submissionsList, setSubmissionsList] = useState<SubmissionRecord[]>([]);
   const [hasWebhook, setHasWebhook] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
-
-  // Check if admin mode is requested via URL query param (?admin=true)
-  const isAdmin = typeof window !== 'undefined' && window.location.search.includes('admin=true');
 
   useEffect(() => {
     setSubmissionsList(getStoredSubmissions());
@@ -139,17 +134,51 @@ export default function App() {
       setFormError('Please select at least one product category (Bra, Panty, or Shapewear) to include.');
       return false;
     }
-    if (formData.includeBra && !formData.braType) {
-      setFormError('Please select Bra Type (Select the Option).');
-      return false;
+    if (formData.includeBra) {
+      if (!formData.braType) {
+        setFormError('Please select Bra Type (Select the Option).');
+        return false;
+      }
+      if (!formData.braPadding) {
+        setFormError('Please select Padding (Select the Option).');
+        return false;
+      }
+      if (!formData.braWire) {
+        setFormError('Please select Wire (Select the Option).');
+        return false;
+      }
+      if (!formData.selectedBraBand) {
+        setFormError('Please select Step 1 · Underbust Measurement.');
+        return false;
+      }
+      if (!formData.selectedBraCup) {
+        setFormError('Please select Step 2 · Overbust Measurement.');
+        return false;
+      }
     }
-    if (formData.includePanty && !formData.pantyType) {
-      setFormError('Please select Panty Type (Select the Option).');
-      return false;
+    if (formData.includePanty) {
+      if (!formData.pantyType) {
+        setFormError('Please select Panty Type (Select the Option).');
+        return false;
+      }
+      if (!formData.pantyRise) {
+        setFormError('Please select Rise (Select the Option).');
+        return false;
+      }
+      if (!formData.pantyHip && !formData.pantyWaist) {
+        setFormError('Please select Panty Size from the Hip / Waist chart.');
+        return false;
+      }
     }
-    if (formData.includeShapewear && !formData.shapewearType) {
-      setFormError('Please select Shapewear Type (Select the Option).');
-      return false;
+    if (formData.includeShapewear) {
+      if (!formData.shapewearType) {
+        setFormError('Please select Shapewear Type (Select the Option).');
+        return false;
+      }
+      if (!formData.shapewearHip && !formData.shapewearWaist) {
+        setFormError('Please select Shapewear Size from the Hip / Waist chart.');
+        return false;
+      }
     }
     return true;
   };
@@ -200,10 +229,7 @@ export default function App() {
         {submittedRecords ? (
           <SuccessReceipt
             records={submittedRecords}
-            hasWebhook={hasWebhook}
-            isAdmin={isAdmin}
             onReset={handleResetForm}
-            onOpenSheetSetup={() => setShowSheetModal(true)}
           />
         ) : (
           <div className="space-y-4">
@@ -221,7 +247,7 @@ export default function App() {
                       Intimate Wear Fit Consultation &amp; Sizing Form
                     </h2>
                     <p className="text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
-                      Experience precision intimate wear sizing tailored by <strong>SOIE by Ginza Industries Limited</strong>. Complete this form to calculate official sizes and save records directly into your Google Sheet tabs (<strong>Bra</strong>, <strong>Panty</strong>, and <strong>Shapewear</strong>).
+                      Experience precision intimate wear sizing tailored by <strong>SOIE by Ginza Industries Limited</strong>. Complete this consultation form to find your verified SOIE sizes across Bra, Panty, and Shapewear.
                     </p>
                   </div>
 
@@ -428,68 +454,10 @@ export default function App() {
           <p className="text-[11px] text-stone-400">
             © {new Date().getFullYear()} SOIE · All rights reserved
           </p>
-
-          {/* Admin Only Controls: hidden from models, only enabled if URL has ?admin=true */}
-          {isAdmin && (
-            <div className="flex items-center justify-center gap-3 pt-3 border-t border-dashed border-stone-200 mt-3">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-2 py-0.5 rounded">
-                Admin Mode
-              </span>
-              <button
-                type="button"
-                onClick={() => setShowSubmissionsDrawer(true)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-stone-700 hover:text-stone-900 bg-stone-100 hover:bg-stone-200 rounded-lg transition-colors cursor-pointer"
-              >
-                <Database className="w-3.5 h-3.5 text-stone-500" />
-                <span>Saved Responses ({submissionsList.length})</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setShowSheetModal(true)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-800 hover:text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg transition-colors cursor-pointer"
-              >
-                <Table className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Sheet Setup &amp; Script</span>
-              </button>
-            </div>
-          )}
         </div>
       </footer>
 
-      {/* Floating admin pill: Only visible if ?admin=true */}
-      {isAdmin && (
-        <div className="fixed bottom-4 right-4 z-40 hidden sm:flex items-center gap-2 bg-stone-900/90 hover:bg-stone-900 text-white px-3 py-1.5 rounded-full shadow-lg border border-stone-700/60 backdrop-blur-md transition-all text-xs">
-          <button
-            type="button"
-            onClick={() => setShowSubmissionsDrawer(true)}
-            className="inline-flex items-center gap-1 text-stone-300 hover:text-white cursor-pointer"
-            title="View saved responses"
-          >
-            <Database className="w-3.5 h-3.5 text-rose-400" />
-            <span>Responses</span>
-            {submissionsList.length > 0 && (
-              <span className="px-1.5 py-0.2 bg-rose-600 text-white rounded-full text-[10px] font-bold">
-                {submissionsList.length}
-              </span>
-            )}
-          </button>
-
-          <span className="w-px h-3 bg-stone-700" />
-
-          <button
-            type="button"
-            onClick={() => setShowSheetModal(true)}
-            className="inline-flex items-center gap-1 text-emerald-300 hover:text-white cursor-pointer"
-            title="Google Sheet Integration"
-          >
-            <Table className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Sheet Setup</span>
-          </button>
-        </div>
-      )}
-
-      {/* Modals & Drawers */}
+      {/* Background Modals & Drawers (hidden by default) */}
       <GoogleSheetModal
         isOpen={showSheetModal}
         onClose={() => setShowSheetModal(false)}
