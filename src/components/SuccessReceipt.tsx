@@ -193,19 +193,27 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
                 <>
                   <div>
                     <span className="text-slate-500 block">Padding:</span>
-                    <span className="font-medium text-slate-800">{rec.paddingOrRiseOrPref}</span>
+                    <span className="font-medium text-slate-800">
+                      {rec.rawFormData?.braPadding || rec.paddingOrRiseOrPref}
+                    </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block">Wire:</span>
-                    <span className="font-medium text-slate-800">{rec.wireOrPrefOrHip}</span>
+                    <span className="font-medium text-slate-800">
+                      {rec.rawFormData?.braWire || rec.wireOrPrefOrHip}
+                    </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block">Underbust:</span>
-                    <span className="font-medium text-slate-800">{rec.underbustOrWaistOrPhone} cms</span>
+                    <span className="font-medium text-slate-800">
+                      {rec.rawFormData?.underbustCm ? `${rec.rawFormData.underbustCm} cms` : `${rec.underbustOrWaistOrPhone} cms`}
+                    </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block">Overbust:</span>
-                    <span className="font-medium text-slate-800">{rec.overbustOrPhoneOrEmail} cms</span>
+                    <span className="font-medium text-slate-800">
+                      {rec.rawFormData?.overbustCm ? `${rec.rawFormData.overbustCm} cms` : `${rec.overbustOrPhoneOrEmail} cms`}
+                    </span>
                   </div>
                 </>
               )}
@@ -214,15 +222,21 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
                 <>
                   <div>
                     <span className="text-slate-500 block">Rise:</span>
-                    <span className="font-medium text-slate-800">{rec.paddingOrRiseOrPref}</span>
+                    <span className="font-medium text-slate-800">
+                      {rec.rawFormData?.pantyRise || rec.paddingOrRiseOrPref}
+                    </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block">Hip:</span>
-                    <span className="font-medium text-slate-800">{rec.prefOrHipOrWaist}</span>
+                    <span className="font-medium text-slate-800">
+                      {rec.rawFormData?.pantyHip || rec.prefOrHipOrWaist}
+                    </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block">Waist:</span>
-                    <span className="font-medium text-slate-800">{rec.underbustOrWaistOrPhone}</span>
+                    <span className="font-medium text-slate-800">
+                      {rec.rawFormData?.pantyWaist || rec.underbustOrWaistOrPhone}
+                    </span>
                   </div>
                 </>
               )}
@@ -231,15 +245,21 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
                 <>
                   <div>
                     <span className="text-slate-500 block">Preference:</span>
-                    <span className="font-medium text-slate-800">{rec.paddingOrRiseOrPref}</span>
+                    <span className="font-medium text-slate-800">
+                      {rec.rawFormData?.shapewearPreference || rec.paddingOrRiseOrPref || 'None'}
+                    </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block">Hip:</span>
-                    <span className="font-medium text-slate-800">{rec.prefOrHipOrWaist}</span>
+                    <span className="font-medium text-slate-800">
+                      {rec.rawFormData?.shapewearHip || rec.wireOrPrefOrHip}
+                    </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block">Waist:</span>
-                    <span className="font-medium text-slate-800">{rec.underbustOrWaistOrPhone}</span>
+                    <span className="font-medium text-slate-800">
+                      {rec.rawFormData?.shapewearWaist || rec.prefOrHipOrWaist}
+                    </span>
                   </div>
                 </>
               )}
