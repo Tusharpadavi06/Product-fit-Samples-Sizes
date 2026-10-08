@@ -166,7 +166,7 @@ export const PantySpecifications: React.FC<SpecificationsProps> = ({
             Panty Details &amp; Cut Preferences
           </h4>
           <p className="text-[11px] sm:text-xs text-stone-500 mt-0.5">
-            Specify your preferred panty silhouette, rise height, and brand history
+            Tell us about your current Panty fit and styling preferences
           </p>
         </div>
       </div>
@@ -274,7 +274,7 @@ export const ShapewearSpecifications: React.FC<SpecificationsProps> = ({
             Shapewear Details &amp; Compression Preferences
           </h4>
           <p className="text-[11px] sm:text-xs text-stone-500 mt-0.5">
-            Specify your contour silhouette and sculpting focus
+            Tell us about your current Shapewear fit and styling preferences
           </p>
         </div>
       </div>

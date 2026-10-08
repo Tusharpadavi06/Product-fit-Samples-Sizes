@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { SubmissionRecord } from '../types';
-import { SoieOriginalLogo } from './BrandLogos';
-import { CheckCircle2, RotateCcw, Printer, Sparkles } from 'lucide-react';
+import { CheckCircle2, RotateCcw, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface SuccessReceiptProps {
@@ -39,29 +38,25 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
     return () => clearTimeout(timer);
   }, []);
 
-  const handlePrint = () => {
-    window.print();
-  };
-
   if (!primaryRecord) return null;
 
   return (
     <div className="max-w-3xl mx-auto my-4 sm:my-6 bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden animate-fadeIn">
-      {/* Top Banner - Sleek Professional Grey Palette (Not black, not maroon) */}
-      <div className="bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 text-white p-5 sm:p-7 text-center relative overflow-hidden border-b border-slate-500">
-        <div className="absolute top-0 right-0 -mt-6 -mr-6 w-32 h-32 rounded-full bg-white/10 blur-xl pointer-events-none" />
+      {/* Top Banner - #efa4a9 Pink Palette as requested */}
+      <div className="bg-[#efa4a9] text-stone-900 p-5 sm:p-7 text-center relative overflow-hidden border-b border-[#e59298]">
+        <div className="absolute top-0 right-0 -mt-6 -mr-6 w-32 h-32 rounded-full bg-white/20 blur-xl pointer-events-none" />
         <div className="relative z-10 flex flex-col items-center">
-          <div className="w-12 h-12 rounded-full bg-white/15 backdrop-blur-xs flex items-center justify-center mb-2.5 ring-2 ring-white/25 shadow-xs">
-            <CheckCircle2 className="w-7 h-7 text-white" />
+          <div className="w-12 h-12 rounded-full bg-white/40 backdrop-blur-xs flex items-center justify-center mb-2.5 ring-2 ring-white/60 shadow-xs">
+            <CheckCircle2 className="w-7 h-7 text-stone-950" />
           </div>
 
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-slate-200 mb-0.5">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-stone-800 mb-0.5">
             Fit Consultation Complete
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-wide">
+          <h2 className="text-xl sm:text-2xl font-bold tracking-wide text-stone-950">
             Consultation Successfully Recorded!
           </h2>
-          <p className="text-xs text-slate-200 max-w-lg mt-1 leading-relaxed">
+          <p className="text-xs text-stone-800 max-w-lg mt-1 leading-relaxed">
             Client: <strong>{primaryRecord.name}</strong> · Category:{' '}
             <strong>{allRecords.map((r) => r.product).join(', ')}</strong>
           </p>
@@ -98,18 +93,18 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
             </div>
           )}
 
-        {/* Brand Header */}
-        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-          <div className="flex items-center gap-3">
-            <SoieOriginalLogo size="md" />
-            <div>
-              <span className="font-serif text-base sm:text-lg font-bold text-slate-900 block leading-none">
-                SOIE
-              </span>
-              <span className="text-[10px] text-slate-600 font-semibold tracking-wider uppercase">
-                SWA · स्वा · Official Consultation Pass
-              </span>
-            </div>
+        {/* Brand Header - SOIE Official Logo from https://ibb.co/pj3g7N1P for receipt page only */}
+        <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+          <div className="flex items-center">
+            <img
+              src="/images/soie-receipt-logo.png"
+              alt="SOIE Official Logo"
+              className="h-10 sm:h-12 w-auto object-contain rounded-lg"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src =
+                  'https://i.ibb.co/LdCMFB0P/Whats-App-Image-2026-10-08-at-2-09-01-PM.jpg';
+              }}
+            />
           </div>
           <div className="text-right">
             <span className="text-[10px] text-slate-500 block uppercase font-mono">
@@ -259,23 +254,14 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
         ))}
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+        <div className="flex items-center justify-center pt-2">
           <button
             type="button"
             onClick={onReset}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-semibold cursor-pointer shadow-sm transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#676765] hover:bg-[#575755] text-white rounded-xl text-sm font-semibold cursor-pointer shadow-md transition-all border border-[#555553]"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-4 h-4" />
             <span>Submit Another Consultation</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={handlePrint}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-semibold cursor-pointer transition-colors border border-slate-200"
-          >
-            <Printer className="w-3.5 h-3.5" />
-            <span>Print Consultation Pass</span>
           </button>
         </div>
       </div>

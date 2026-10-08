@@ -282,14 +282,18 @@ export async function submitConsultationToGoogleSheet(
         records: payloadRecords,
       };
 
-      await fetch(webhookUrl, {
+      // Fast non-blocking save so user never waits more than 2.5s
+      const fetchPromise = fetch(webhookUrl, {
         method: 'POST',
         mode: 'no-cors',
         headers: {
           'Content-Type': 'text/plain;charset=utf-8',
         },
         body: JSON.stringify(payload),
-      });
+      }).catch((e) => console.warn('Background sync note:', e));
+
+      const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 2500));
+      await Promise.race([fetchPromise, timeoutPromise]);
 
       createdRecords.forEach((r) => {
         r.syncedToGoogleSheet = true;

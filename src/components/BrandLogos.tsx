@@ -18,11 +18,11 @@ export const SoieOriginalLogo: React.FC<{
   return (
     <div className={`inline-flex items-center justify-center p-1 bg-white rounded-xl shadow-xs border border-slate-300/80 flex-shrink-0 ${className}`}>
       <img
-        src="/images/soie-logo.jpg"
+        src="/images/soie-transparent-logo.png"
         alt="SOIE Official Logo"
         className={`${sizeClasses} object-contain rounded-lg`}
         onError={(e) => {
-          (e.target as HTMLImageElement).src = 'https://i.ibb.co/jPc6QjDj/Soie-Logo.jpg';
+          (e.target as HTMLImageElement).src = 'https://i.ibb.co/6RBmTZJg/Soie-Logo.png';
         }}
       />
     </div>
@@ -202,11 +202,11 @@ export const SoieProductSizeFormBanner: React.FC<{ className?: string }> = ({
         {/* Official SOIE Company Logo - Centered Only, Larger Size, Seamless (No White Border) */}
         <div className="h-20 sm:h-24 md:h-28 w-auto flex items-center justify-center flex-shrink-0">
           <img
-            src="/images/soie-new-logo.jpg"
+            src="/images/soie-transparent-logo.png"
             alt="SOIE Official Logo"
             className="h-full w-auto max-w-[280px] sm:max-w-[340px] md:max-w-[400px] object-contain"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = '/images/soie-logo.jpg';
+              (e.target as HTMLImageElement).src = 'https://i.ibb.co/6RBmTZJg/Soie-Logo.png';
             }}
           />
         </div>

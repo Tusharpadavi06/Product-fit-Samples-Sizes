@@ -278,7 +278,7 @@ export default function App() {
                       Fit Consultation Form
                     </h2>
                     <p className="text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
-                      Experience precision intimate wear sizing tailored by <strong>SOIE by Ginza Industries Limited</strong>.
+                      Experience precision intimate wear sizing tailored by <strong>SOIE</strong>.
                     </p>
                   </div>
 
@@ -362,12 +362,9 @@ export default function App() {
               {/* 3. BRA SECTION: Specifications + Step 1 & Step 2 Fit Finder */}
               {formData.includeBra && (
                 <div className="space-y-3">
-                  <div className="bg-[#676765] text-white px-4 py-2.5 rounded-xl flex items-center justify-between shadow-xs border border-[#555553]">
+                  <div className="bg-[#676765] text-white px-4 py-2.5 rounded-xl shadow-xs border border-[#555553]">
                     <span className="text-xs sm:text-sm font-bold tracking-wide">
                       Section 1 · Bra Fit Consultation &amp; Sizing
-                    </span>
-                    <span className="text-[11px] bg-white/20 text-white px-2 py-0.5 rounded-md font-bold">
-                      Bra
                     </span>
                   </div>
 
@@ -388,12 +385,9 @@ export default function App() {
               {/* 4. PANTY SECTION: Specifications + Interactive Sizing Table */}
               {formData.includePanty && (
                 <div className="space-y-3">
-                  <div className="bg-[#676765] text-white px-4 py-2.5 rounded-xl flex items-center justify-between shadow-xs border border-[#555553]">
+                  <div className="bg-[#676765] text-white px-4 py-2.5 rounded-xl shadow-xs border border-[#555553]">
                     <span className="text-xs sm:text-sm font-bold tracking-wide">
                       Section 2 · Panty Fit Consultation &amp; Sizing
-                    </span>
-                    <span className="text-[11px] bg-white/20 text-white px-2 py-0.5 rounded-md font-bold">
-                      Panty
                     </span>
                   </div>
 
@@ -414,12 +408,9 @@ export default function App() {
               {/* 5. SHAPEWEAR SECTION: Specifications + Interactive Sizing Table */}
               {formData.includeShapewear && (
                 <div className="space-y-3">
-                  <div className="bg-[#676765] text-white px-4 py-2.5 rounded-xl flex items-center justify-between shadow-xs border border-[#555553]">
+                  <div className="bg-[#676765] text-white px-4 py-2.5 rounded-xl shadow-xs border border-[#555553]">
                     <span className="text-xs sm:text-sm font-bold tracking-wide">
                       Section 3 · Shapewear Fit Consultation &amp; Sizing
-                    </span>
-                    <span className="text-[11px] bg-white/20 text-white px-2 py-0.5 rounded-md font-bold">
-                      Shapewear
                     </span>
                   </div>
 
@@ -448,21 +439,21 @@ export default function App() {
                 </div>
               )}
 
-              {/* 6. SUBMISSION CARD WITH SINGLE PROMINENT SUBMIT BUTTON */}
+              {/* 6. SUBMISSION CARD WITH SINGLE PROMINENT SUBMIT BUTTON IN #efa4a9 */}
               <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-2xs">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm tracking-wide shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="w-full py-3.5 px-6 rounded-xl bg-[#efa4a9] hover:bg-[#e79298] text-stone-900 border border-[#e59298] font-bold text-xs sm:text-sm tracking-wide shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <Loader2 className="w-4 h-4 animate-spin text-stone-900" />
                       <span>Saving Records to Google Sheet Tabs...</span>
                     </>
                   ) : (
                     <>
-                      <Send className="w-4 h-4" />
+                      <Send className="w-4 h-4 text-stone-900" />
                       <span>Submit Fit Consultation ({buttonProductLabel})</span>
                     </>
                   )}
