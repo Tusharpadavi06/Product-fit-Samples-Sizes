@@ -104,7 +104,7 @@ export const SampleInterestModal: React.FC<SampleInterestModalProps> = ({
               Thank you for your response!
             </h3>
             <p className="text-xs sm:text-sm text-rose-100 font-medium leading-relaxed">
-              Aapka response humare liye valuable hai.
+              Your response is very valuable to us.
             </p>
             {clientName && (
               <p className="text-[11px] text-rose-200/90 pt-0.5">
@@ -120,13 +120,13 @@ export const SampleInterestModal: React.FC<SampleInterestModalProps> = ({
           <div className="bg-rose-50/70 p-3.5 sm:p-4 rounded-2xl border border-rose-200/80 space-y-1">
             <div className="flex items-center gap-1.5 text-rose-900 font-bold text-xs uppercase tracking-wide">
               <Sparkles className="w-3.5 h-3.5 text-rose-600" />
-              <span>Final Question · Sample Interest</span>
+              <span>Final Question · Fitting Sample Interest</span>
             </div>
             <p className="text-xs sm:text-sm font-semibold text-stone-900 leading-snug">
-              Agar aap ko fit k liye koi sample chaiye hoga to konsa sample k liye aap interested ho?
+              If you would like a fitting sample, which product sample(s) are you interested in?
             </p>
             <p className="text-[11px] text-stone-600 leading-relaxed">
-              Aap niche diye gaye multiple options me se ek ya sabhi select kar sakte hain:
+              You can select one, multiple, or all options below before finalizing your submission:
             </p>
           </div>
 

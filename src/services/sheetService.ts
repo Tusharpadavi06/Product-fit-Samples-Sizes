@@ -509,6 +509,7 @@ function buildRowForProduct(tabName, d) {
 
   if (tabName === "Bra") {
     // Columns B to P (15 values)
+    var sampleVal = d.colP_SampleInterest || (d.sampleInterestBra ? "Interested" : (d.samplesInterested && d.samplesInterested.indexOf("Bra") !== -1 ? "Interested" : "No"));
     return [
       d.colB_Name || d.name || "",
       "Bra",
@@ -524,10 +525,11 @@ function buildRowForProduct(tabName, d) {
       formatPhone(d.colM_Contact || d.contactNumber),
       d.colN_Email || d.emailId || "",
       d.colO_SoieSize || d.braSoieSize || d.soieSize || "",
-      d.colP_SampleInterest || d.sampleInterestBra || ""
+      sampleVal
     ];
   } else if (tabName === "Panty") {
     // Columns B to O (14 values)
+    var sampleVal = d.colO_SampleInterest || (d.sampleInterestPanty ? "Interested" : (d.samplesInterested && d.samplesInterested.indexOf("Panty") !== -1 ? "Interested" : "No"));
     return [
       d.colB_Name || d.name || "",
       "Panty",
@@ -542,10 +544,11 @@ function buildRowForProduct(tabName, d) {
       formatPhone(d.colL_Contact || d.contactNumber),
       d.colM_Email || d.emailId || "",
       d.colN_SoieSize || d.pantySoieSize || d.selectedPantySize || "",
-      d.colO_SampleInterest || d.sampleInterestPanty || ""
+      sampleVal
     ];
   } else {
     // Shapewear: Columns B to N (13 values)
+    var sampleVal = d.colN_SampleInterest || (d.sampleInterestShapewear ? "Interested" : (d.samplesInterested && d.samplesInterested.indexOf("Shapewear") !== -1 ? "Interested" : "No"));
     return [
       d.colB_Name || d.name || "",
       "Shapewear",
@@ -559,7 +562,7 @@ function buildRowForProduct(tabName, d) {
       formatPhone(d.colK_Contact || d.contactNumber),
       d.colL_Email || d.emailId || "",
       d.colM_SoieSize || d.shapewearSoieSize || d.selectedShapewearSize || "",
-      d.colN_SampleInterest || d.sampleInterestShapewear || ""
+      sampleVal
     ];
   }
 }
