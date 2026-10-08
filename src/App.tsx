@@ -224,6 +224,7 @@ export default function App() {
       setShowSampleModal(false);
       setSubmittedRecords(result.records);
       setSubmissionsList(getStoredSubmissions());
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     } catch (err: any) {
       setFormError(err?.message || 'Submission failed. Please check network.');
     } finally {
@@ -253,7 +254,7 @@ export default function App() {
   const buttonProductLabel = activeProducts.length > 0 ? activeProducts.join(' · ') : 'Consultation';
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F6F2F0] text-stone-900 selection:bg-rose-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#F6F2F0] text-stone-900 selection:bg-slate-700 selection:text-white">
       {/* Main Google Form-Style Container (Top header removed per user request, starts directly with Google Form card and professional header banner) */}
       <main className="flex-1 max-w-4xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-6">
         {submittedRecords ? (
@@ -282,10 +283,10 @@ export default function App() {
                   </div>
 
                   {/* Included Products Selection Pills (All 3 selected by default) */}
-                  <div className="bg-[#FAF6F7] p-3.5 sm:p-4 rounded-2xl border border-[#ECD9DE] space-y-2">
+                  <div className="bg-stone-50 p-3.5 sm:p-4 rounded-2xl border border-stone-200 space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#5A1725] flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-[#872338]" />
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-stone-800 flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-stone-700" />
                         Products Included in this Consultation:
                       </span>
                       <span className="text-[11px] text-stone-500 hidden sm:inline">
@@ -300,12 +301,12 @@ export default function App() {
                         onClick={() => handleUpdateFormData({ includeBra: !formData.includeBra })}
                         className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer ${
                           formData.includeBra
-                            ? 'bg-white border-[#872338] shadow-2xs text-[#4A1724] font-semibold ring-1 ring-[#872338]'
+                            ? 'bg-white border-stone-800 shadow-2xs text-stone-900 font-semibold ring-1 ring-stone-800'
                             : 'bg-white/60 border-stone-200 text-stone-500 hover:bg-white'
                         }`}
                       >
                         {formData.includeBra ? (
-                          <CheckSquare className="w-4 h-4 text-[#872338] flex-shrink-0" />
+                          <CheckSquare className="w-4 h-4 text-stone-900 flex-shrink-0" />
                         ) : (
                           <Square className="w-4 h-4 text-stone-400 flex-shrink-0" />
                         )}
@@ -318,12 +319,12 @@ export default function App() {
                         onClick={() => handleUpdateFormData({ includePanty: !formData.includePanty })}
                         className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer ${
                           formData.includePanty
-                            ? 'bg-white border-[#872338] shadow-2xs text-[#4A1724] font-semibold ring-1 ring-[#872338]'
+                            ? 'bg-white border-stone-800 shadow-2xs text-stone-900 font-semibold ring-1 ring-stone-800'
                             : 'bg-white/60 border-stone-200 text-stone-500 hover:bg-white'
                         }`}
                       >
                         {formData.includePanty ? (
-                          <CheckSquare className="w-4 h-4 text-[#872338] flex-shrink-0" />
+                          <CheckSquare className="w-4 h-4 text-stone-900 flex-shrink-0" />
                         ) : (
                           <Square className="w-4 h-4 text-stone-400 flex-shrink-0" />
                         )}
@@ -336,12 +337,12 @@ export default function App() {
                         onClick={() => handleUpdateFormData({ includeShapewear: !formData.includeShapewear })}
                         className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer ${
                           formData.includeShapewear
-                            ? 'bg-white border-[#872338] shadow-2xs text-[#4A1724] font-semibold ring-1 ring-[#872338]'
+                            ? 'bg-white border-stone-800 shadow-2xs text-stone-900 font-semibold ring-1 ring-stone-800'
                             : 'bg-white/60 border-stone-200 text-stone-500 hover:bg-white'
                         }`}
                       >
                         {formData.includeShapewear ? (
-                          <CheckSquare className="w-4 h-4 text-[#872338] flex-shrink-0" />
+                          <CheckSquare className="w-4 h-4 text-stone-900 flex-shrink-0" />
                         ) : (
                           <Square className="w-4 h-4 text-stone-400 flex-shrink-0" />
                         )}
@@ -361,11 +362,11 @@ export default function App() {
               {/* 3. BRA SECTION: Specifications + Step 1 & Step 2 Fit Finder */}
               {formData.includeBra && (
                 <div className="space-y-3">
-                  <div className="bg-gradient-to-r from-[#441722] via-[#541D2B] to-[#3B141E] text-white px-4 py-2 rounded-xl flex items-center justify-between shadow-xs">
+                  <div className="bg-slate-700 text-white px-4 py-2 rounded-xl flex items-center justify-between shadow-xs border border-slate-600">
                     <span className="text-xs sm:text-sm font-semibold tracking-wide">
                       Section 1 · Bra Fit Consultation &amp; Sizing
                     </span>
-                    <span className="text-[11px] bg-white/15 px-2 py-0.5 rounded-md font-medium text-[#F0CBD4]">
+                    <span className="text-[11px] bg-white/15 px-2 py-0.5 rounded-md font-medium text-slate-100">
                       Bra
                     </span>
                   </div>
@@ -387,11 +388,11 @@ export default function App() {
               {/* 4. PANTY SECTION: Specifications + Interactive Sizing Table */}
               {formData.includePanty && (
                 <div className="space-y-3">
-                  <div className="bg-gradient-to-r from-[#441722] via-[#541D2B] to-[#3B141E] text-white px-4 py-2 rounded-xl flex items-center justify-between shadow-xs">
+                  <div className="bg-slate-700 text-white px-4 py-2 rounded-xl flex items-center justify-between shadow-xs border border-slate-600">
                     <span className="text-xs sm:text-sm font-semibold tracking-wide">
                       Section 2 · Panty Fit Consultation &amp; Sizing
                     </span>
-                    <span className="text-[11px] bg-white/15 px-2 py-0.5 rounded-md font-medium text-[#F0CBD4]">
+                    <span className="text-[11px] bg-white/15 px-2 py-0.5 rounded-md font-medium text-slate-100">
                       Panty
                     </span>
                   </div>
@@ -413,11 +414,11 @@ export default function App() {
               {/* 5. SHAPEWEAR SECTION: Specifications + Interactive Sizing Table */}
               {formData.includeShapewear && (
                 <div className="space-y-3">
-                  <div className="bg-gradient-to-r from-[#441722] via-[#541D2B] to-[#3B141E] text-white px-4 py-2 rounded-xl flex items-center justify-between shadow-xs">
+                  <div className="bg-slate-700 text-white px-4 py-2 rounded-xl flex items-center justify-between shadow-xs border border-slate-600">
                     <span className="text-xs sm:text-sm font-semibold tracking-wide">
                       Section 3 · Shapewear Fit Consultation &amp; Sizing
                     </span>
-                    <span className="text-[11px] bg-white/15 px-2 py-0.5 rounded-md font-medium text-[#F0CBD4]">
+                    <span className="text-[11px] bg-white/15 px-2 py-0.5 rounded-md font-medium text-slate-100">
                       Shapewear
                     </span>
                   </div>
@@ -438,8 +439,8 @@ export default function App() {
 
               {/* Form Error Alert if validation fails */}
               {formError && (
-                <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-300 text-rose-900 flex items-start gap-2.5 text-xs shadow-2xs">
-                  <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" />
+                <div className="p-3.5 rounded-xl bg-slate-100 border border-slate-300 text-slate-800 flex items-start gap-2.5 text-xs shadow-2xs">
+                  <AlertCircle className="w-4 h-4 text-slate-700 flex-shrink-0 mt-0.5" />
                   <div>
                     <strong className="font-bold">Please check required fields:</strong>
                     <p className="mt-0.5">{formError}</p>
@@ -452,7 +453,7 @@ export default function App() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#6E1C2F] via-[#85253C] to-[#5C1626] hover:from-[#5C1626] hover:to-[#46111D] text-white font-bold text-xs sm:text-sm tracking-wide shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="w-full py-3.5 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm tracking-wide shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>

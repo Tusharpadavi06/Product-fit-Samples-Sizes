@@ -48,7 +48,7 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
     }
   };
 
-  // Step 2: Click cup box (Overbust cm range)
+  // Step 2: Click cup box (Overbust cm range) - User chooses cm, cup is internally locked and shown in recommended
   const handleSelectCup = (cup: BraCup) => {
     const band = formData.selectedBraBand;
     const row = band ? BRA_SIZE_MATRIX.find((r) => r.band === band) : currentBandRow;
@@ -84,7 +84,7 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
         {/* Step 1 Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-stone-100 pb-2">
           <div>
-            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-[#F7EBEF] text-[#691829]">
+            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-stone-100 text-stone-800 border border-stone-200">
               Step 1 · Underbust Measurement
             </span>
             <h3 className="text-xs sm:text-[13px] font-semibold text-stone-800 mt-1">
@@ -92,8 +92,8 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
             </h3>
           </div>
           {currentBand ? (
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-stone-900 text-[#F5C2CE] rounded-lg text-xs font-semibold shadow-xs self-start sm:self-auto flex-shrink-0">
-              <Sparkles className="w-3 h-3 text-[#E8BDC7]" />
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-stone-900 text-white rounded-lg text-xs font-semibold shadow-xs self-start sm:self-auto flex-shrink-0">
+              <Sparkles className="w-3 h-3 text-stone-300" />
               <span>Band {currentBand} Selected</span>
             </div>
           ) : (
@@ -116,7 +116,7 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
               Wrap measuring tape directly under the bust band tissue comfortably snug. Select your underbust measurement below:
             </p>
 
-            {/* Horizontal Band Selection Boxes: 4 boxes on top, 4 boxes below - Clean & Reduced font */}
+            {/* Horizontal Band Selection Boxes: 4 boxes on top, 4 boxes below - Proper Grey Palette */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5">
               {BRA_SIZE_MATRIX.map((row) => {
                 const isSelected = formData.selectedBraBand === row.band;
@@ -127,8 +127,8 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
                     onClick={() => handleSelectBand(row.band)}
                     className={`py-2 sm:py-2.5 px-1.5 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center ${
                       isSelected
-                        ? 'bg-[#872338] text-white border-[#701B2C] shadow-2xs ring-1 ring-[#872338]'
-                        : 'bg-stone-50 hover:bg-[#FAF4F6] border-stone-200 text-stone-800 hover:border-[#872338]/40'
+                        ? 'bg-stone-900 text-white border-stone-900 shadow-xs ring-1 ring-stone-700'
+                        : 'bg-stone-50 hover:bg-stone-100 border-stone-200 text-stone-800 hover:border-stone-400'
                     }`}
                   >
                     {/* 1. Moderate / Clean cm Range Number */}
@@ -142,7 +142,7 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
                     {/* 2. cm unit in neat compact font */}
                     <span
                       className={`text-[10px] font-medium leading-none mt-0.5 ${
-                        isSelected ? 'text-[#FAD2DC]' : 'text-stone-500'
+                        isSelected ? 'text-stone-300' : 'text-stone-500'
                       }`}
                     >
                       cm
@@ -160,7 +160,7 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
         {/* Step 2 Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-stone-100 pb-2">
           <div>
-            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-[#F7EBEF] text-[#691829]">
+            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-stone-100 text-stone-800 border border-stone-200">
               Step 2 · Overbust Measurement
             </span>
             <h3 className="text-xs sm:text-[13px] font-semibold text-stone-800 mt-1">
@@ -168,13 +168,13 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
             </h3>
           </div>
           {currentCup ? (
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-stone-900 text-[#F5C2CE] rounded-lg text-xs font-semibold shadow-xs self-start sm:self-auto flex-shrink-0">
-              <Sparkles className="w-3 h-3 text-[#E8BDC7]" />
-              <span>{currentCup} Selected</span>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-stone-900 text-white rounded-lg text-xs font-semibold shadow-xs self-start sm:self-auto flex-shrink-0">
+              <Sparkles className="w-3 h-3 text-stone-300" />
+              <span>Overbust: {formData.overbustCm} cms Selected</span>
             </div>
           ) : (
             <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-stone-100 text-stone-600 rounded-lg text-[11px] font-medium self-start sm:self-auto flex-shrink-0">
-              <span>Tap your Overbust Cup below</span>
+              <span>Tap your Overbust (cms) below</span>
             </div>
           )}
         </div>
@@ -186,13 +186,13 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
             <BraStep2Illustration size="sm" />
           </div>
 
-          {/* Right: Cup Boxes */}
+          {/* Right: Cup Boxes without Cup label (as requested: Cup B, Cup C, etc. removed from table, only in recommended) */}
           <div className="md:col-span-8 lg:col-span-8.5 space-y-2">
             <p className="text-[11px] text-stone-600 font-normal leading-relaxed">
               Wrap measuring tape around fullest apex of the breast. Select your Overbust measurement below:
             </p>
 
-            {/* Horizontal Cup Boxes: Clean, balanced font size */}
+            {/* Horizontal Overbust Boxes: Only cm range and unit shown, NO Cup letters inside button */}
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 sm:gap-2">
               {CUP_LIST.map((cup) => {
                 const range = currentBandRow.cups[cup];
@@ -203,10 +203,10 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
                     type="button"
                     key={cup}
                     onClick={() => handleSelectCup(cup)}
-                    className={`py-2 sm:py-2.5 px-1 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center ${
+                    className={`py-2.5 sm:py-3 px-1 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center ${
                       isSelected
-                        ? 'bg-[#872338] text-white border-[#701B2C] shadow-2xs ring-1 ring-[#872338]'
-                        : 'bg-stone-50 hover:bg-[#FAF4F6] border-stone-200 text-stone-800 hover:border-[#872338]/40'
+                        ? 'bg-stone-900 text-white border-stone-900 shadow-xs ring-1 ring-stone-700'
+                        : 'bg-stone-50 hover:bg-stone-100 border-stone-200 text-stone-800 hover:border-stone-400'
                     }`}
                   >
                     {/* 1. Compact cm Range Number */}
@@ -217,24 +217,13 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
                       {isSelected && <Check className="w-2.5 h-2.5 text-white stroke-[2.5]" />}
                     </div>
 
-                    {/* 2. cm unit */}
+                    {/* 2. cm unit - NO Cup B / Cup C shown inside box as requested */}
                     <span
-                      className={`text-[10px] font-medium leading-none ${
-                        isSelected ? 'text-[#FAD2DC]' : 'text-stone-500'
+                      className={`text-[10px] font-medium leading-none mt-0.5 ${
+                        isSelected ? 'text-stone-300' : 'text-stone-500'
                       }`}
                     >
                       cm
-                    </span>
-
-                    {/* 3. Cup Name in neat font */}
-                    <span
-                      className={`text-[11px] sm:text-xs mt-1 font-semibold px-1.5 py-0.5 rounded ${
-                        isSelected
-                          ? 'bg-[#5C1625] text-white'
-                          : 'bg-white text-stone-700 border border-stone-200/90 shadow-2xs'
-                      }`}
-                    >
-                      {cup}
                     </span>
                   </button>
                 );
@@ -244,24 +233,24 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
         </div>
       </div>
 
-      {/* ================= COMPACT EXACT RESULT BOX ================= */}
-      <div className="bg-[#1C1917] text-white px-3.5 py-2.5 rounded-xl border border-stone-800 shadow-2xs">
+      {/* ================= COMPACT EXACT RESULT BOX (Cup & Band shown here) ================= */}
+      <div className="bg-slate-700 text-white px-3.5 py-2.5 rounded-xl border border-slate-600 shadow-2xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-3">
           <div className="text-xs sm:text-[13px] font-medium flex items-center gap-2">
-            <span className="text-stone-300">Recommended SOIE Size:</span>
-            <span className="text-sm sm:text-base text-[#F5C2CE] font-bold tracking-tight bg-stone-800/90 px-2 py-0.5 rounded border border-stone-700">
+            <span className="text-slate-200">Recommended SOIE Size:</span>
+            <span className="text-sm sm:text-base text-white font-bold tracking-tight bg-slate-800 px-2 py-0.5 rounded border border-slate-600">
               {formData.braSoieSize || (formData.selectedBraBand && formData.selectedBraCup ? `${formData.selectedBraBand}${formData.selectedBraCup.replace('Cup ', '')}` : '—')}
             </span>
           </div>
-          <div className="text-[11px] text-stone-300 font-normal">
+          <div className="text-[11px] text-slate-200 font-normal">
             {formData.selectedBraBand && formData.selectedBraCup ? (
               <span>
                 Band {formData.selectedBraBand} (Underbust: {formData.underbustCm} cms) + {formData.selectedBraCup} (Overbust: {formData.overbustCm} cms)
               </span>
             ) : formData.selectedBraBand ? (
-              <span>Band {formData.selectedBraBand} (Underbust: {formData.underbustCm} cms) selected · Please select Step 2 Overbust Cup</span>
+              <span>Band {formData.selectedBraBand} (Underbust: {formData.underbustCm} cms) selected · Please select Step 2 Overbust</span>
             ) : formData.selectedBraCup ? (
-              <span>{formData.selectedBraCup} selected · Please select Step 1 Underbust Band</span>
+              <span>Overbust {formData.overbustCm} cms selected · Please select Step 1 Underbust Band</span>
             ) : (
               <span>Please select Step 1 Underbust and Step 2 Overbust to calculate Recommended SOIE Size</span>
             )}

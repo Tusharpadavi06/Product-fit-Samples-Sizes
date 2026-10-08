@@ -89,7 +89,7 @@ export const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({
         onClick={() => setIsOpen(!isOpen)}
         className={`w-full min-h-[44px] px-3 py-2 rounded-xl border text-sm outline-none transition-all bg-white cursor-pointer flex items-center justify-between gap-2 ${
           isOpen
-            ? 'border-rose-500 ring-2 ring-rose-200'
+            ? 'border-stone-800 ring-1 ring-stone-400/40'
             : 'border-stone-300 hover:border-stone-400'
         }`}
       >
@@ -140,7 +140,7 @@ export const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({
               <button
                 type="button"
                 onClick={() => onChange('')}
-                className="text-[11px] text-rose-600 hover:text-rose-800 font-semibold cursor-pointer"
+                className="text-[11px] text-stone-700 hover:text-stone-900 font-semibold cursor-pointer underline"
               >
                 Clear all
               </button>
@@ -158,7 +158,7 @@ export const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({
                 onClick={(e) => handleToggleOption(opt, e)}
                 className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium cursor-pointer transition-colors ${
                   isSelected
-                    ? 'bg-rose-50/90 text-rose-950 font-semibold'
+                    ? 'bg-stone-100 text-stone-950 font-semibold'
                     : 'hover:bg-stone-50 text-stone-700'
                 }`}
               >
@@ -166,7 +166,7 @@ export const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({
                   <div
                     className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${
                       isSelected
-                        ? 'bg-rose-600 border-rose-600 text-white'
+                        ? 'bg-stone-900 border-stone-900 text-white'
                         : 'border-stone-300 bg-white'
                     }`}
                   >

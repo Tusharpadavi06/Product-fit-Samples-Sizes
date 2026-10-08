@@ -72,18 +72,18 @@ export const SampleInterestModal: React.FC<SampleInterestModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/65 backdrop-blur-xs animate-fadeIn overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fadeIn overflow-y-auto">
       <div
-        className="bg-white rounded-3xl max-w-lg w-full border border-stone-200 shadow-2xl overflow-hidden my-auto transform transition-all animate-scaleIn"
+        className="bg-white rounded-3xl max-w-lg w-full border border-slate-200 shadow-2xl overflow-hidden my-auto transform transition-all animate-scaleIn"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Top Header Banner with Soft Silent Rose / Wine Palette (Refined & understated) */}
-        <div className="bg-gradient-to-r from-[#441722] via-[#541D2B] to-[#3B141E] text-white p-5 sm:p-6 relative">
+        {/* Top Header Banner with Sleek Professional Grey Palette (Not black, not maroon) */}
+        <div className="bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 text-white p-5 sm:p-6 relative border-b border-slate-500">
           <button
             type="button"
             onClick={onClose}
             disabled={isSubmitting}
-            className="absolute top-4 right-4 text-white/80 hover:text-white bg-black/20 hover:bg-black/40 rounded-full p-1.5 transition-colors cursor-pointer"
+            className="absolute top-4 right-4 text-white/80 hover:text-white bg-black/25 hover:bg-black/45 rounded-full p-1.5 transition-colors cursor-pointer"
             title="Close"
           >
             <X className="w-4 h-4" />
@@ -94,28 +94,28 @@ export const SampleInterestModal: React.FC<SampleInterestModalProps> = ({
               <SoieOriginalLogo size="sm" />
             </div>
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#E8BDC7] block">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-slate-200 block">
                 SOIE by Ginza Industries Limited
               </span>
-              <span className="text-xs text-white/90 font-medium">
+              <span className="text-xs text-white/95 font-medium">
                 Fit Consultation Confirmation
               </span>
             </div>
           </div>
 
           <div className="space-y-1">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 border border-white/10 text-[#F2CBD4] text-[11px] font-semibold mb-1">
-              <HeartHandshake className="w-3.5 h-3.5 text-[#E8BDC7]" />
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 border border-white/20 text-slate-100 text-[11px] font-semibold mb-1">
+              <HeartHandshake className="w-3.5 h-3.5 text-slate-200" />
               <span>Response Recorded</span>
             </div>
             <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white">
               Thank you for your response!
             </h3>
-            <p className="text-xs sm:text-sm text-[#F0CBD4] font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-200 font-normal leading-relaxed">
               Your response is very valuable to us.
             </p>
             {clientName && (
-              <p className="text-[11px] text-[#D4A5B2] pt-0.5 font-normal">
+              <p className="text-[11px] text-slate-300 pt-0.5 font-normal">
                 Client: <strong className="text-white font-semibold">{clientName}</strong>
               </p>
             )}
@@ -123,17 +123,17 @@ export const SampleInterestModal: React.FC<SampleInterestModalProps> = ({
         </div>
 
         {/* Modal Body */}
-        <form onSubmit={handleFinalSubmit} className="p-5 sm:p-6 space-y-4">
-          {/* Fitting Sample Question Prompt */}
-          <div className="bg-[#FAF5F6] p-3.5 sm:p-4 rounded-2xl border border-[#ECDCE1] space-y-1">
-            <div className="flex items-center gap-1.5 text-[#6E1C2F] font-bold text-xs uppercase tracking-wide">
-              <Sparkles className="w-3.5 h-3.5 text-[#872338]" />
+        <form onSubmit={handleFinalSubmit} className="p-4 sm:p-6 space-y-4">
+          {/* Fitting Sample Question Prompt with Updated Exact Statement */}
+          <div className="bg-slate-50 p-3.5 sm:p-4 rounded-2xl border border-slate-200 space-y-1">
+            <div className="flex items-center gap-1.5 text-slate-800 font-bold text-xs uppercase tracking-wide">
+              <Sparkles className="w-3.5 h-3.5 text-slate-600" />
               <span>Fitting Sample Interest</span>
             </div>
-            <p className="text-xs sm:text-sm font-semibold text-stone-900 leading-snug">
-              Agar aap ko fit k liye koi sample chaiye hoga to konsa sample k liye aap interested ho?
+            <p className="text-xs sm:text-sm font-semibold text-slate-900 leading-snug">
+              If you&apos;re interested in participating in our product fitting sessions, please select the product you would be interested in trying.
             </p>
-            <p className="text-[11px] text-stone-600 leading-relaxed">
+            <p className="text-[11px] text-slate-600 leading-relaxed">
               You can select one, multiple, or keep all unselected before finalizing your submission:
             </p>
           </div>
@@ -141,13 +141,13 @@ export const SampleInterestModal: React.FC<SampleInterestModalProps> = ({
           {/* Multiple Selection Options (Bra, Panty, Shapewear) - Unselected by default */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs pb-1">
-              <span className="font-bold text-stone-700 uppercase tracking-wider text-[11px]">
+              <span className="font-bold text-slate-700 uppercase tracking-wider text-[11px]">
                 Select Interested Sample(s):
               </span>
               <button
                 type="button"
                 onClick={handleSelectAll}
-                className="text-[11px] font-semibold text-[#872338] hover:text-[#601625] cursor-pointer"
+                className="text-[11px] font-semibold text-slate-700 hover:text-slate-900 cursor-pointer underline underline-offset-2"
               >
                 {selectedSamples.length === SAMPLE_OPTIONS.length ? 'Deselect All' : 'Select All'}
               </button>
@@ -161,28 +161,28 @@ export const SampleInterestModal: React.FC<SampleInterestModalProps> = ({
                   <div
                     key={opt.id}
                     onClick={() => toggleSample(opt.id)}
-                    className={`flex items-center justify-between p-3.5 rounded-xl border transition-all cursor-pointer ${
+                    className={`flex items-center justify-between p-3 sm:p-3.5 rounded-xl border transition-all cursor-pointer ${
                       isChecked
-                        ? 'bg-[#FDF7F8] border-[#872338] shadow-2xs ring-1 ring-[#872338]'
-                        : 'bg-white hover:bg-stone-50 border-stone-200 text-stone-700'
+                        ? 'bg-slate-100 border-slate-700 shadow-2xs ring-1 ring-slate-700'
+                        : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-700'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <div
                         className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors flex-shrink-0 ${
                           isChecked
-                            ? 'bg-[#872338] border-[#872338] text-white'
-                            : 'border-stone-300 bg-white'
+                            ? 'bg-slate-800 border-slate-800 text-white'
+                            : 'border-slate-300 bg-white'
                         }`}
                       >
                         {isChecked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                       </div>
 
                       <div>
-                        <span className="text-xs sm:text-sm font-bold text-stone-900 block leading-tight">
+                        <span className="text-xs sm:text-sm font-bold text-slate-900 block leading-tight">
                           {opt.title}
                         </span>
-                        <span className="text-[11px] text-stone-500 block">
+                        <span className="text-[11px] text-slate-500 block">
                           {opt.desc}
                         </span>
                       </div>
@@ -191,8 +191,8 @@ export const SampleInterestModal: React.FC<SampleInterestModalProps> = ({
                     <span
                       className={`text-[10px] font-semibold px-2 py-0.5 rounded-md ${
                         isChecked
-                          ? 'bg-[#872338] text-white'
-                          : 'bg-stone-100 text-stone-600'
+                          ? 'bg-slate-800 text-white'
+                          : 'bg-slate-100 text-slate-600'
                       }`}
                     >
                       {isChecked ? 'Interested ✓' : 'Tap to Select'}
@@ -209,7 +209,7 @@ export const SampleInterestModal: React.FC<SampleInterestModalProps> = ({
               type="button"
               onClick={onClose}
               disabled={isSubmitting}
-              className="py-2.5 px-4 rounded-xl border border-stone-300 text-stone-700 font-medium text-xs hover:bg-stone-100 transition-colors cursor-pointer order-2 sm:order-1 sm:w-1/3"
+              className="py-2.5 px-4 rounded-xl border border-slate-300 text-slate-700 font-medium text-xs hover:bg-slate-100 transition-colors cursor-pointer order-2 sm:order-1 sm:w-1/3"
             >
               Back to Form
             </button>
@@ -217,7 +217,7 @@ export const SampleInterestModal: React.FC<SampleInterestModalProps> = ({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-[#6E1C2F] via-[#85253C] to-[#5C1626] hover:from-[#5C1626] hover:to-[#46111D] text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer order-1 sm:order-2 disabled:opacity-70"
+              className="flex-1 py-3 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer order-1 sm:order-2 disabled:opacity-70"
             >
               {isSubmitting ? (
                 <>

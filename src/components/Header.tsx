@@ -19,11 +19,11 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 transition-all shadow-2xs">
       {/* Brand Top Bar */}
-      <div className="bg-[#7C2136] text-white text-[11px] py-1 px-4 text-center tracking-wider font-medium flex items-center justify-center gap-2">
-        <Sparkles className="w-3 h-3 text-rose-300" />
+      <div className="bg-[#c5c6c7] text-slate-800 text-[11px] py-1.5 px-4 text-center tracking-wider font-semibold border-b border-[#a8aaab] flex items-center justify-center gap-2">
+        <Sparkles className="w-3 h-3 text-slate-600" />
         <span>SOIE Fit Master · Official Intimate Size Consultation & Precision Form</span>
         <span className="hidden sm:inline opacity-70">|</span>
-        <span className="hidden sm:inline text-rose-200">Ginza Industries Limited</span>
+        <span className="hidden sm:inline text-slate-700">Ginza Industries Limited</span>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">

@@ -91,8 +91,8 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
           <span
             className={`px-2 py-0.5 rounded-md font-medium flex items-center gap-1 ${
               isStep1Completed
-                ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
-                : 'bg-[#F7EBEF] text-[#691829] ring-1 ring-[#872338]/30'
+                ? 'bg-stone-200 text-stone-900 border border-stone-300'
+                : 'bg-stone-900 text-white'
             }`}
           >
             {isStep1Completed ? <Check className="w-3 h-3" /> : null}
@@ -104,9 +104,9 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
           <span
             className={`px-2 py-0.5 rounded-md font-medium flex items-center gap-1 ${
               isStep2Completed
-                ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                ? 'bg-stone-200 text-stone-900 border border-stone-300'
                 : isStep1Completed
-                ? 'bg-[#F7EBEF] text-[#691829] ring-1 ring-[#872338]/40'
+                ? 'bg-stone-900 text-white'
                 : 'bg-stone-100 text-stone-400'
             }`}
           >
@@ -134,17 +134,17 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
               className={`p-3 sm:p-3.5 rounded-xl border transition-all ${
                 isStep1Completed
                   ? 'bg-stone-50/80 border-stone-200'
-                  : 'bg-[#FAF4F6] border-[#E8CCD4] ring-1 ring-[#872338]/20'
+                  : 'bg-stone-50 border-stone-300 ring-1 ring-stone-300'
               }`}
             >
               <div className="flex items-center justify-between border-b border-stone-200/80 pb-1.5 mb-2">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[11px] font-bold text-[#5A1725] uppercase tracking-wide">
+                    <span className="text-[11px] font-bold text-stone-800 uppercase tracking-wide">
                       Step 1 · To Fit Hip (Cm)
                     </span>
                     {isStep1Completed && (
-                      <span className="text-[9px] bg-emerald-600 text-white font-bold px-1.5 py-0.2 rounded">
+                      <span className="text-[9px] bg-stone-900 text-white font-bold px-1.5 py-0.2 rounded">
                         Done
                       </span>
                     )}
@@ -168,8 +168,8 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
                       onClick={() => handleSelectHip(row)}
                       className={`py-2 px-1.5 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center ${
                         isSelected
-                          ? 'bg-[#872338] text-white border-[#701B2C] font-semibold shadow-2xs ring-1 ring-[#872338]'
-                          : 'bg-white hover:bg-[#FAF4F6] border-stone-200 text-stone-800 hover:border-[#872338]/30'
+                          ? 'bg-stone-900 text-white border-stone-900 font-semibold shadow-xs ring-1 ring-stone-700'
+                          : 'bg-white hover:bg-stone-50 border-stone-200 text-stone-800 hover:border-stone-400'
                       }`}
                     >
                       <div className="flex items-center justify-center gap-0.5">
@@ -180,7 +180,7 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
                       </div>
                       <span
                         className={`text-[10px] leading-none ${
-                          isSelected ? 'text-[#FAD2DC] font-medium' : 'text-stone-500'
+                          isSelected ? 'text-stone-300 font-medium' : 'text-stone-500'
                         }`}
                       >
                         cm
@@ -198,21 +198,21 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
                   ? 'bg-stone-50/50 border-stone-200 opacity-60'
                   : isStep2Completed
                   ? 'bg-stone-50/80 border-stone-200'
-                  : 'bg-[#FAF4F6] border-[#872338] ring-1 ring-[#872338]/40 shadow-xs'
+                  : 'bg-stone-50 border-stone-800 ring-1 ring-stone-800 shadow-xs'
               }`}
             >
               <div className="flex items-center justify-between border-b border-stone-200/80 pb-1.5 mb-2">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[11px] font-bold text-[#5A1725] uppercase tracking-wide">
+                    <span className="text-[11px] font-bold text-stone-800 uppercase tracking-wide">
                       Step 2 · To Fit Waist (Cm)
                     </span>
                     {isStep2Completed ? (
-                      <span className="text-[9px] bg-emerald-600 text-white font-bold px-1.5 py-0.2 rounded">
+                      <span className="text-[9px] bg-stone-900 text-white font-bold px-1.5 py-0.2 rounded">
                         Done
                       </span>
                     ) : isStep1Completed ? (
-                      <span className="text-[9px] bg-[#872338] text-white font-bold px-1.5 py-0.2 rounded">
+                      <span className="text-[9px] bg-stone-900 text-white font-bold px-1.5 py-0.2 rounded">
                         Active
                       </span>
                     ) : null}
@@ -244,8 +244,8 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
                         onClick={() => handleSelectWaist(row)}
                         className={`py-2 px-1.5 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center ${
                           isSelected
-                            ? 'bg-[#872338] text-white border-[#701B2C] font-semibold shadow-2xs ring-1 ring-[#872338]'
-                            : 'bg-white hover:bg-[#FAF4F6] border-stone-200 text-stone-800 hover:border-[#872338]/30'
+                            ? 'bg-stone-900 text-white border-stone-900 font-semibold shadow-xs ring-1 ring-stone-700'
+                            : 'bg-white hover:bg-stone-50 border-stone-200 text-stone-800 hover:border-stone-400'
                         }`}
                       >
                         <div className="flex items-center justify-center gap-0.5">
@@ -256,7 +256,7 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
                         </div>
                         <span
                           className={`text-[10px] leading-none ${
-                            isSelected ? 'text-[#FAD2DC] font-medium' : 'text-stone-500'
+                            isSelected ? 'text-stone-300 font-medium' : 'text-stone-500'
                           }`}
                         >
                           cm
@@ -270,22 +270,22 @@ export const PantySizeCalculator: React.FC<PantySizeCalculatorProps> = ({
           </div>
 
           {/* Compact Recommended SOIE Size Box */}
-          <div className="bg-[#1C1917] text-white px-3.5 py-2.5 rounded-xl border border-stone-800 shadow-2xs">
+          <div className="bg-slate-700 text-white px-3.5 py-2.5 rounded-xl border border-slate-600 shadow-2xs">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-3">
               <div className="text-xs sm:text-[13px] font-medium flex items-center gap-2">
-                <span className="text-stone-300">Recommended SOIE Size:</span>
-                <span className="text-sm sm:text-base text-[#F5C2CE] font-bold tracking-tight bg-stone-800/90 px-2 py-0.5 rounded border border-stone-700">
+                <span className="text-slate-200">Recommended SOIE Size:</span>
+                <span className="text-sm sm:text-base text-white font-bold tracking-tight bg-slate-800 px-2 py-0.5 rounded border border-slate-600">
                   {calculatedSize || '—'}
                 </span>
               </div>
-              <div className="text-[11px] text-stone-300 font-normal">
+              <div className="text-[11px] text-slate-200 font-normal">
                 {isBothCompleted ? (
                   <span className="flex items-center gap-1.5">
-                    <Sparkles className="w-3 h-3 text-[#E8BDC7] flex-shrink-0" />
+                    <Sparkles className="w-3 h-3 text-stone-300 flex-shrink-0" />
                     Panty Size: {calculatedSize} (Step 1 Hip: {formData.pantyHip} · Step 2 Waist: {formData.pantyWaist})
                   </span>
                 ) : isStep1Completed ? (
-                  <span className="text-[#F5C2CE] font-medium">
+                  <span className="text-stone-200 font-medium">
                     Step 1 Hip ({formData.pantyHip}) selected · Now tap Step 2 Waist to lock size
                   </span>
                 ) : (

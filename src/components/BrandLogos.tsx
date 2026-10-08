@@ -9,20 +9,20 @@ export const SoieOriginalLogo: React.FC<{
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }> = ({ className = '', size = 'md' }) => {
   const sizeClasses = {
-    sm: 'h-9 w-auto',
-    md: 'h-12 w-auto',
-    lg: 'h-16 w-auto',
-    xl: 'h-20 w-auto',
+    sm: 'h-10 w-auto',
+    md: 'h-14 w-auto',
+    lg: 'h-20 w-auto',
+    xl: 'h-24 w-auto',
   }[size];
 
   return (
-    <div className={`inline-flex items-center justify-center p-1 bg-white rounded-xl shadow-xs border border-rose-200/80 flex-shrink-0 ${className}`}>
+    <div className={`inline-flex items-center justify-center p-1 bg-white rounded-xl shadow-xs border border-slate-300/80 flex-shrink-0 ${className}`}>
       <img
         src="/images/soie-logo.jpg"
         alt="SOIE Official Logo"
         className={`${sizeClasses} object-contain rounded-lg`}
         onError={(e) => {
-          (e.target as HTMLImageElement).src = 'https://i.ibb.co/DDgmsJJV/SOIE-New-original-logo.jpg';
+          (e.target as HTMLImageElement).src = 'https://i.ibb.co/jPc6QjDj/Soie-Logo.jpg';
         }}
       />
     </div>
@@ -193,37 +193,37 @@ export const SoieProductSizeFormBanner: React.FC<{ className?: string }> = ({
 }) => {
   return (
     <div
-      className={`w-full overflow-hidden rounded-t-2xl border-b border-[#301018] select-none bg-gradient-to-r from-[#441722] via-[#541D2B] to-[#3B141E] text-white relative shadow-xs ${className}`}
+      className={`w-full overflow-hidden rounded-t-2xl border-b border-[#a8aaab] select-none bg-[#c5c6c7] text-slate-900 relative shadow-xs ${className}`}
     >
       {/* Subtle luxury ambient pattern overlay */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,white_0%,transparent_60%)] pointer-events-none" />
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,white_0%,transparent_60%)] pointer-events-none" />
 
-      <div className="relative z-10 py-3.5 sm:py-4 px-4 sm:px-6">
+      <div className="relative z-10 py-2 sm:py-2.5 px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           {/* Left: Official SOIE Company Logo & Corporate Brand Identity */}
-          <div className="flex items-center gap-3">
-            <div className="bg-white p-1 rounded-xl shadow-xs border border-rose-200/40 flex items-center justify-center flex-shrink-0">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="h-16 sm:h-20 md:h-22 w-auto bg-white p-1 rounded-xl shadow-xs border border-slate-300/80 flex items-center justify-center flex-shrink-0">
               <img
                 src="/images/soie-logo.jpg"
                 alt="SOIE Official Logo"
-                className="h-10 sm:h-11 w-auto object-contain rounded-lg"
+                className="h-full w-auto object-contain rounded-lg"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://i.ibb.co/DDgmsJJV/SOIE-New-original-logo.jpg';
+                  (e.target as HTMLImageElement).src = 'https://i.ibb.co/jPc6QjDj/Soie-Logo.jpg';
                 }}
               />
             </div>
 
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-2">
-                <span className="font-serif text-base sm:text-lg font-bold tracking-wider uppercase text-[#F2CBD4]">
+                <span className="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-wider uppercase text-slate-900 leading-tight">
                   SOIE
                 </span>
-                <span className="text-stone-400 text-xs">|</span>
-                <span className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-[#D8A6B2]">
+                <span className="text-slate-400 text-xs sm:text-sm">|</span>
+                <span className="text-xs sm:text-[13px] font-bold tracking-wider uppercase text-slate-800">
                   Ginza Industries Limited
                 </span>
               </div>
-              <p className="text-[11px] sm:text-xs text-[#D8A6B2]/90 font-normal mt-0.5">
+              <p className="text-xs sm:text-[13px] text-slate-600 font-medium mt-0.5">
                 Intimate Wear Fit Consultation &amp; Size Finder Form
               </p>
             </div>

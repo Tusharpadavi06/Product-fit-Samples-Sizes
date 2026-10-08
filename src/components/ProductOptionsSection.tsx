@@ -18,9 +18,6 @@ interface SpecificationsProps {
 
 /**
  * Bra Specifications Card
- * Columns: Name (B), Product (C), Size (D), Brands you use (E), Styel number (F),
- * Type (G), Padding (H), Wire (I), Preference (J), Under bust (K), Over Bust (L),
- * Contact (M), Email (N), Soie Size (O)
  */
 export const BraSpecifications: React.FC<SpecificationsProps> = ({
   formData,
@@ -31,7 +28,7 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
       <div className="border-b border-stone-100 pb-2.5 flex items-center justify-between">
         <div>
           <h4 className="text-sm sm:text-base font-bold text-stone-900 flex items-center gap-2">
-            <Tag className="w-4 h-4 text-[#872338]" />
+            <Tag className="w-4 h-4 text-stone-700" />
             Bra Details &amp; Current Preferences
           </h4>
           <p className="text-[11px] sm:text-xs text-stone-500 mt-0.5">
@@ -44,7 +41,7 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
         {/* Current Size (Column D) */}
         <div>
           <label className="block text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1">
-            Current Bra Size <span className="text-rose-600">*</span>
+            Current Bra Size <span className="text-stone-900">*</span>
           </label>
           <input
             type="text"
@@ -52,14 +49,14 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
             placeholder="e.g. 34B or 36C"
             value={formData.braCurrentSize}
             onChange={(e) => onChange({ braCurrentSize: e.target.value, currentSize: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
 
         {/* Brands You Use (Column E) */}
         <div>
           <label className="block text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1">
-            Brands You Use <span className="text-rose-600">*</span>
+            Brands You Use <span className="text-stone-900">*</span>
           </label>
           <input
             type="text"
@@ -67,7 +64,7 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
             placeholder="Type brands you wear (e.g. SOIE, Enamor, Triumph)..."
             value={formData.braBrandsYouUse}
             onChange={(e) => onChange({ braBrandsYouUse: e.target.value, brandsYouUse: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
 
@@ -81,7 +78,7 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
             placeholder="e.g. SB1029 (Optional)"
             value={formData.braStyleNumber}
             onChange={(e) => onChange({ braStyleNumber: e.target.value, styleNumber: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
 
@@ -100,12 +97,12 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
         {/* Padding (Column H) - Padded, Non Padded, Padded and Non Padded */}
         <div>
           <label className="block text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1">
-            Padding <span className="text-rose-600">*</span>
+            Padding <span className="text-stone-900">*</span>
           </label>
           <select
             value={formData.braPadding}
             onChange={(e) => onChange({ braPadding: e.target.value as BraPadding })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all bg-white text-stone-800"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all bg-white text-stone-800"
           >
             <option value="">Select the Option</option>
             {BRA_PADDING_OPTIONS.map((pad) => (
@@ -119,12 +116,12 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
         {/* Wire (Column I) - Wired, Non Wired, Wired and Non Wired */}
         <div>
           <label className="block text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1">
-            Wire <span className="text-rose-600">*</span>
+            Wire <span className="text-stone-900">*</span>
           </label>
           <select
             value={formData.braWire}
             onChange={(e) => onChange({ braWire: e.target.value as BraWire })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all bg-white text-stone-800"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all bg-white text-stone-800"
           >
             <option value="">Select the Option</option>
             {BRA_WIRE_OPTIONS.map((w) => (
@@ -145,7 +142,7 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
             placeholder="Type your preferences (e.g. cotton cups, full support, daily comfort)..."
             value={formData.braPreference}
             onChange={(e) => onChange({ braPreference: e.target.value, preference: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
       </div>
@@ -155,9 +152,6 @@ export const BraSpecifications: React.FC<SpecificationsProps> = ({
 
 /**
  * Panty Specifications Card
- * Columns: Name (B), Product (C), Size (D), Brands you use (E), Styel number (F),
- * Type (G), Rise (H), Preference (I), All round Hip (J), All round Waist (K),
- * Contact (L), Email (M), Soie Size (N)
  */
 export const PantySpecifications: React.FC<SpecificationsProps> = ({
   formData,
@@ -168,7 +162,7 @@ export const PantySpecifications: React.FC<SpecificationsProps> = ({
       <div className="border-b border-stone-100 pb-2.5 flex items-center justify-between">
         <div>
           <h4 className="text-sm sm:text-base font-bold text-stone-900 flex items-center gap-2">
-            <Tag className="w-4 h-4 text-[#872338]" />
+            <Tag className="w-4 h-4 text-stone-700" />
             Panty Details &amp; Cut Preferences
           </h4>
           <p className="text-[11px] sm:text-xs text-stone-500 mt-0.5">
@@ -181,7 +175,7 @@ export const PantySpecifications: React.FC<SpecificationsProps> = ({
         {/* Current Size (Column D) */}
         <div>
           <label className="block text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1">
-            Current Panty Size <span className="text-rose-600">*</span>
+            Current Panty Size <span className="text-stone-900">*</span>
           </label>
           <input
             type="text"
@@ -189,14 +183,14 @@ export const PantySpecifications: React.FC<SpecificationsProps> = ({
             placeholder="e.g. S, M, L, XL"
             value={formData.pantyCurrentSize}
             onChange={(e) => onChange({ pantyCurrentSize: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
 
         {/* Brands You Use (Column E) */}
         <div>
           <label className="block text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1">
-            Brands You Use <span className="text-rose-600">*</span>
+            Brands You Use <span className="text-stone-900">*</span>
           </label>
           <input
             type="text"
@@ -204,7 +198,7 @@ export const PantySpecifications: React.FC<SpecificationsProps> = ({
             placeholder="Type brands you wear (e.g. SOIE, Jockey, Clovia)..."
             value={formData.pantyBrandsYouUse}
             onChange={(e) => onChange({ pantyBrandsYouUse: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
 
@@ -218,7 +212,7 @@ export const PantySpecifications: React.FC<SpecificationsProps> = ({
             placeholder="e.g. SP2011 (Optional)"
             value={formData.pantyStyleNumber}
             onChange={(e) => onChange({ pantyStyleNumber: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
 
@@ -256,7 +250,7 @@ export const PantySpecifications: React.FC<SpecificationsProps> = ({
             placeholder="Type your preferences (e.g. seamless edges, 100% cotton gusset, no muffin top)..."
             value={formData.pantyPreference}
             onChange={(e) => onChange({ pantyPreference: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
       </div>
@@ -266,9 +260,6 @@ export const PantySpecifications: React.FC<SpecificationsProps> = ({
 
 /**
  * Shapewear Specifications Card
- * Columns: Name (B), Product (C), Size (D), Brands you use (E), Styel number (F),
- * Type (G), Preference (H), All round Hip (I), All round Waist (J),
- * Contact (K), Email (L), Soie Size (M)
  */
 export const ShapewearSpecifications: React.FC<SpecificationsProps> = ({
   formData,
@@ -279,7 +270,7 @@ export const ShapewearSpecifications: React.FC<SpecificationsProps> = ({
       <div className="border-b border-stone-100 pb-2.5 flex items-center justify-between">
         <div>
           <h4 className="text-sm sm:text-base font-bold text-stone-900 flex items-center gap-2">
-            <Tag className="w-4 h-4 text-[#872338]" />
+            <Tag className="w-4 h-4 text-stone-700" />
             Shapewear Details &amp; Compression Preferences
           </h4>
           <p className="text-[11px] sm:text-xs text-stone-500 mt-0.5">
@@ -292,7 +283,7 @@ export const ShapewearSpecifications: React.FC<SpecificationsProps> = ({
         {/* Current Size (Column D) */}
         <div>
           <label className="block text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1">
-            Current Shapewear Size <span className="text-rose-600">*</span>
+            Current Shapewear Size <span className="text-stone-900">*</span>
           </label>
           <input
             type="text"
@@ -300,14 +291,14 @@ export const ShapewearSpecifications: React.FC<SpecificationsProps> = ({
             placeholder="e.g. M, L, XL"
             value={formData.shapewearCurrentSize}
             onChange={(e) => onChange({ shapewearCurrentSize: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
 
         {/* Brands You Use (Column E) */}
         <div>
           <label className="block text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1">
-            Brands You Use <span className="text-rose-600">*</span>
+            Brands You Use <span className="text-stone-900">*</span>
           </label>
           <input
             type="text"
@@ -315,7 +306,7 @@ export const ShapewearSpecifications: React.FC<SpecificationsProps> = ({
             placeholder="Type brands you wear (e.g. SOIE, Spanx, Wacoal)..."
             value={formData.shapewearBrandsYouUse}
             onChange={(e) => onChange({ shapewearBrandsYouUse: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
 
@@ -329,7 +320,7 @@ export const ShapewearSpecifications: React.FC<SpecificationsProps> = ({
             placeholder="e.g. SW301 (Optional)"
             value={formData.shapewearStyleNumber}
             onChange={(e) => onChange({ shapewearStyleNumber: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
 
@@ -355,7 +346,7 @@ export const ShapewearSpecifications: React.FC<SpecificationsProps> = ({
             placeholder="Type your preferences (e.g. saree silhouette, tummy cinch, breathable all day)..."
             value={formData.shapewearPreference}
             onChange={(e) => onChange({ shapewearPreference: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-[#872338] focus:ring-1 focus:ring-[#872338]/30 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-3 py-2 rounded-xl border border-stone-300 focus:border-stone-800 focus:ring-1 focus:ring-stone-400/40 text-xs sm:text-sm outline-none transition-all placeholder:text-stone-400"
           />
         </div>
       </div>

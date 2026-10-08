@@ -19,16 +19,24 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
   const primaryRecord = allRecords[0];
 
   useEffect(() => {
+    // Scroll window immediately to top so user sees the top of the completion page
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 50);
+
     try {
       confetti({
-        particleCount: 90,
-        spread: 70,
+        particleCount: 60,
+        spread: 60,
         origin: { y: 0.6 },
-        colors: ['#E85570', '#F68194', '#FCAEBA', '#B12543'],
+        colors: ['#475569', '#64748B', '#94A3B8', '#CBD5E1', '#334155'],
       });
     } catch (e) {
       // Ignore if blocked
     }
+
+    return () => clearTimeout(timer);
   }, []);
 
   const handlePrint = () => {
@@ -38,101 +46,111 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
   if (!primaryRecord) return null;
 
   return (
-    <div className="max-w-3xl mx-auto my-6 bg-white rounded-3xl border border-stone-200 shadow-xl overflow-hidden animate-fadeIn">
-      {/* Top Banner */}
-      <div className="bg-gradient-to-r from-[#441722] via-[#541D2B] to-[#3B141E] text-white p-5 sm:p-7 text-center relative overflow-hidden">
+    <div className="max-w-3xl mx-auto my-4 sm:my-6 bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden animate-fadeIn">
+      {/* Top Banner - Sleek Professional Grey Palette (Not black, not maroon) */}
+      <div className="bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 text-white p-5 sm:p-7 text-center relative overflow-hidden border-b border-slate-500">
         <div className="absolute top-0 right-0 -mt-6 -mr-6 w-32 h-32 rounded-full bg-white/10 blur-xl pointer-events-none" />
         <div className="relative z-10 flex flex-col items-center">
-          <div className="w-12 h-12 rounded-full bg-white/15 backdrop-blur-xs flex items-center justify-center mb-2.5 ring-2 ring-white/20">
-            <CheckCircle2 className="w-7 h-7 text-[#F5C2CE]" />
+          <div className="w-12 h-12 rounded-full bg-white/15 backdrop-blur-xs flex items-center justify-center mb-2.5 ring-2 ring-white/25 shadow-xs">
+            <CheckCircle2 className="w-7 h-7 text-white" />
           </div>
 
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#E8BDC7] mb-0.5">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-slate-200 mb-0.5">
             Fit Consultation Complete
           </span>
           <h2 className="text-xl sm:text-2xl font-bold tracking-wide">
             Consultation Successfully Recorded!
           </h2>
-          <p className="text-xs text-[#F0CBD4] max-w-lg mt-1 leading-relaxed">
+          <p className="text-xs text-slate-200 max-w-lg mt-1 leading-relaxed">
             Client: <strong>{primaryRecord.name}</strong> · Category:{' '}
             <strong>{allRecords.map((r) => r.product).join(', ')}</strong>
           </p>
         </div>
       </div>
 
-      <div className="p-6 sm:p-8 space-y-6">
-        {/* Clean Consultation Confirmation Banner (Zero Google Sheet mentions/warnings) */}
-        <div className="bg-rose-50/80 border border-rose-200/90 rounded-2xl p-4 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2.5 text-stone-800 font-medium">
-            <CheckCircle2 className="w-4 h-4 text-rose-600 flex-shrink-0" />
+      <div className="p-4 sm:p-6 space-y-4 sm:space-y-5">
+        {/* Clean Consultation Confirmation Banner */}
+        <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-3.5 flex items-center justify-between text-xs">
+          <div className="flex items-center gap-2 text-slate-800 font-medium">
+            <CheckCircle2 className="w-4 h-4 text-slate-700 flex-shrink-0" />
             <span>Your consultation record has been confirmed and saved.</span>
           </div>
-          <span className="text-[10px] font-bold uppercase tracking-wider text-rose-800 bg-rose-200/70 px-2.5 py-0.5 rounded-full">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-white bg-slate-700 px-2.5 py-0.5 rounded-full">
             Confirmed
           </span>
         </div>
 
         {primaryRecord.rawFormData?.samplesInterested &&
           primaryRecord.rawFormData.samplesInterested.length > 0 && (
-            <div className="bg-amber-50/70 border border-amber-200/90 rounded-2xl p-3.5 flex items-center justify-between text-xs">
-              <div className="flex items-center gap-2 text-stone-800">
-                <Sparkles className="w-4 h-4 text-amber-600 flex-shrink-0" />
+            <div className="bg-slate-100/90 border border-slate-300 rounded-xl p-3 flex items-center justify-between text-xs">
+              <div className="flex items-center gap-2 text-slate-800">
+                <Sparkles className="w-3.5 h-3.5 text-slate-700 flex-shrink-0" />
                 <span>
                   Sample Trial Requested:{' '}
-                  <strong className="text-stone-900 font-semibold">
+                  <strong className="text-slate-900 font-semibold">
                     {primaryRecord.rawFormData.samplesInterested.join(', ')}
                   </strong>
                 </span>
               </div>
-              <span className="text-[10px] font-bold uppercase text-amber-900 bg-amber-200/70 px-2.5 py-0.5 rounded-full">
+              <span className="text-[10px] font-bold uppercase text-slate-800 bg-slate-200 px-2 py-0.5 rounded-md font-mono">
                 Sample Noted
               </span>
             </div>
           )}
 
         {/* Brand Header */}
-        <div className="flex items-center justify-between border-b border-stone-100 pb-4">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
           <div className="flex items-center gap-3">
             <SoieOriginalLogo size="md" />
             <div>
-              <span className="font-serif text-lg font-bold text-stone-900 block leading-none">
+              <span className="font-serif text-base sm:text-lg font-bold text-slate-900 block leading-none">
                 SOIE
               </span>
-              <span className="text-[10px] text-rose-800 font-semibold tracking-wider uppercase">
+              <span className="text-[10px] text-slate-600 font-semibold tracking-wider uppercase">
                 SWA · स्वा · Official Consultation Pass
               </span>
             </div>
           </div>
           <div className="text-right">
-            <span className="text-[10px] text-stone-600 block uppercase font-mono">
+            <span className="text-[10px] text-slate-500 block uppercase font-mono">
               Timestamp
             </span>
-            <span className="text-xs font-mono font-bold text-stone-800">
+            <span className="text-xs font-mono font-bold text-slate-800">
               {primaryRecord.timestamp}
             </span>
           </div>
         </div>
 
-        {/* Display Size Cards for each submitted product */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {/* Fit Size Recommendations Section Header (as requested by user) */}
+        <div className="space-y-0.5 pt-1">
+          <h3 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
+            Your Fit Size Recommendations
+          </h3>
+          <p className="text-xs text-slate-600 leading-relaxed">
+            Here are your recommended <strong>Bra, Panty, and Shapewear sizes</strong> based on the details you provided.
+          </p>
+        </div>
+
+        {/* Medium-Sized Size Cards for each submitted product (Medium size and sleek grey palette as requested) */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {allRecords.map((rec) => (
             <div
               key={rec.id}
-              className="bg-stone-900 text-white rounded-2xl p-5 text-center shadow-md relative overflow-hidden flex flex-col justify-between"
+              className="bg-gradient-to-b from-slate-700 to-slate-800 text-white rounded-xl p-3 sm:p-3.5 text-center shadow-xs relative overflow-hidden flex flex-col justify-between border border-slate-600"
             >
               <div>
-                <span className="text-[11px] uppercase tracking-wider text-rose-300 font-bold block mb-1">
+                <span className="text-[10px] sm:text-[11px] uppercase tracking-wider text-slate-300 font-semibold block mb-0.5">
                   {rec.product} Fit Size
                 </span>
-                <div className="font-serif text-4xl sm:text-5xl font-bold text-rose-200 my-2 tracking-tight">
+                <div className="font-serif text-xl sm:text-2xl font-bold text-white my-1 tracking-tight">
                   {rec.soieSize}
                 </div>
-                <p className="text-xs text-stone-300 truncate">
+                <p className="text-[11px] text-slate-200 truncate mt-0.5" title={`Type: ${rec.type}`}>
                   Type: {rec.type}
                 </p>
               </div>
 
-              <div className="mt-3 pt-2 border-t border-stone-800 text-[10px] text-stone-400 font-mono">
+              <div className="mt-2 pt-1.5 border-t border-slate-600/80 text-[10px] text-slate-300 font-medium font-mono">
                 {rec.product} · Recommended Size
               </div>
             </div>
@@ -143,51 +161,51 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
         {allRecords.map((rec) => (
           <div
             key={rec.id}
-            className="bg-stone-50 rounded-2xl p-4 sm:p-5 border border-stone-200 text-xs space-y-2"
+            className="bg-slate-50 rounded-xl p-3 sm:p-3.5 border border-slate-200 text-xs space-y-1.5"
           >
-            <div className="flex items-center justify-between border-b border-stone-200/80 pb-2">
-              <h4 className="font-bold text-stone-900 uppercase tracking-wider text-xs flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5 text-rose-600" />
+            <div className="flex items-center justify-between border-b border-slate-200 pb-1.5">
+              <h4 className="font-bold text-slate-900 uppercase tracking-wider text-xs flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-slate-700" />
                 {rec.product} Fit Details
               </h4>
-              <span className="font-mono text-[10px] text-stone-500">{rec.id}</span>
+              <span className="font-mono text-[10px] text-slate-500">{rec.id}</span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-[11px]">
               <div>
-                <span className="text-stone-500 block">Current Size:</span>
-                <span className="font-semibold text-stone-800">{rec.currentSize}</span>
+                <span className="text-slate-500 block">Current Size:</span>
+                <span className="font-semibold text-slate-800">{rec.currentSize}</span>
               </div>
               <div>
-                <span className="text-stone-500 block">Brand:</span>
-                <span className="font-semibold text-stone-800">{rec.brandsYouUse}</span>
+                <span className="text-slate-500 block">Brand:</span>
+                <span className="font-semibold text-slate-800">{rec.brandsYouUse}</span>
               </div>
               <div>
-                <span className="text-stone-500 block">Type:</span>
-                <span className="font-semibold text-stone-800">{rec.type}</span>
+                <span className="text-slate-500 block">Type:</span>
+                <span className="font-semibold text-slate-800">{rec.type}</span>
               </div>
               <div>
-                <span className="text-stone-500 block">SOIE Size:</span>
-                <span className="font-bold text-rose-700">{rec.soieSize}</span>
+                <span className="text-slate-500 block">SOIE Size:</span>
+                <span className="font-bold text-slate-900">{rec.soieSize}</span>
               </div>
 
               {rec.product === 'Bra' && (
                 <>
                   <div>
-                    <span className="text-stone-500 block">Padding:</span>
-                    <span className="font-medium text-stone-800">{rec.paddingOrRiseOrPref}</span>
+                    <span className="text-slate-500 block">Padding:</span>
+                    <span className="font-medium text-slate-800">{rec.paddingOrRiseOrPref}</span>
                   </div>
                   <div>
-                    <span className="text-stone-500 block">Wire:</span>
-                    <span className="font-medium text-stone-800">{rec.wireOrPrefOrHip}</span>
+                    <span className="text-slate-500 block">Wire:</span>
+                    <span className="font-medium text-slate-800">{rec.wireOrPrefOrHip}</span>
                   </div>
                   <div>
-                    <span className="text-stone-500 block">Underbust:</span>
-                    <span className="font-medium text-stone-800">{rec.underbustOrWaistOrPhone} cms</span>
+                    <span className="text-slate-500 block">Underbust:</span>
+                    <span className="font-medium text-slate-800">{rec.underbustOrWaistOrPhone} cms</span>
                   </div>
                   <div>
-                    <span className="text-stone-500 block">Overbust:</span>
-                    <span className="font-medium text-stone-800">{rec.overbustOrPhoneOrEmail} cms</span>
+                    <span className="text-slate-500 block">Overbust:</span>
+                    <span className="font-medium text-slate-800">{rec.overbustOrPhoneOrEmail} cms</span>
                   </div>
                 </>
               )}
@@ -195,16 +213,33 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
               {rec.product === 'Panty' && (
                 <>
                   <div>
-                    <span className="text-stone-500 block">Rise:</span>
-                    <span className="font-medium text-stone-800">{rec.paddingOrRiseOrPref}</span>
+                    <span className="text-slate-500 block">Rise:</span>
+                    <span className="font-medium text-slate-800">{rec.paddingOrRiseOrPref}</span>
                   </div>
                   <div>
-                    <span className="text-stone-500 block">Hip:</span>
-                    <span className="font-medium text-stone-800">{rec.prefOrHipOrWaist}</span>
+                    <span className="text-slate-500 block">Hip:</span>
+                    <span className="font-medium text-slate-800">{rec.prefOrHipOrWaist}</span>
                   </div>
                   <div>
-                    <span className="text-stone-500 block">Waist:</span>
-                    <span className="font-medium text-stone-800">{rec.underbustOrWaistOrPhone}</span>
+                    <span className="text-slate-500 block">Waist:</span>
+                    <span className="font-medium text-slate-800">{rec.underbustOrWaistOrPhone}</span>
+                  </div>
+                </>
+              )}
+
+              {rec.product === 'Shapewear' && (
+                <>
+                  <div>
+                    <span className="text-slate-500 block">Preference:</span>
+                    <span className="font-medium text-slate-800">{rec.paddingOrRiseOrPref}</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 block">Hip:</span>
+                    <span className="font-medium text-slate-800">{rec.prefOrHipOrWaist}</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 block">Waist:</span>
+                    <span className="font-medium text-slate-800">{rec.underbustOrWaistOrPhone}</span>
                   </div>
                 </>
               )}
@@ -213,22 +248,22 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
         ))}
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
           <button
             type="button"
             onClick={onReset}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold cursor-pointer shadow-md transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-semibold cursor-pointer shadow-sm transition-all"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-3.5 h-3.5" />
             <span>Submit Another Consultation</span>
           </button>
 
           <button
             type="button"
             onClick={handlePrint}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-semibold cursor-pointer transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-semibold cursor-pointer transition-colors border border-slate-200"
           >
-            <Printer className="w-4 h-4" />
+            <Printer className="w-3.5 h-3.5" />
             <span>Print Consultation Pass</span>
           </button>
         </div>
