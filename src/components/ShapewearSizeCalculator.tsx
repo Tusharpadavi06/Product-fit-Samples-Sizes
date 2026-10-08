@@ -271,22 +271,22 @@ export const ShapewearSizeCalculator: React.FC<ShapewearSizeCalculatorProps> = (
           </div>
 
           {/* Compact Recommended SOIE Size Box */}
-          <div className="bg-slate-700 text-white px-3.5 py-2.5 rounded-xl border border-slate-600 shadow-2xs">
+          <div className="bg-[#676765] text-white px-3.5 py-2.5 rounded-xl border border-[#555553] shadow-xs">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-3">
-              <div className="text-xs sm:text-[13px] font-medium flex items-center gap-2">
-                <span className="text-slate-200">Recommended SOIE Size:</span>
-                <span className="text-sm sm:text-base text-white font-bold tracking-tight bg-slate-800 px-2 py-0.5 rounded border border-slate-600">
+              <div className="text-xs sm:text-[13px] font-bold flex items-center gap-2 text-white">
+                <span>Recommended SOIE Size:</span>
+                <span className="text-sm sm:text-base text-stone-900 font-bold tracking-normal bg-white px-2.5 py-0.5 rounded-md shadow-xs border border-stone-200 font-sans">
                   {calculatedSize || '—'}
                 </span>
               </div>
-              <div className="text-[11px] text-slate-200 font-normal">
+              <div className="text-[11px] text-stone-200 font-medium">
                 {isBothCompleted ? (
                   <span className="flex items-center gap-1.5">
-                    <Sparkles className="w-3 h-3 text-stone-300 flex-shrink-0" />
+                    <Sparkles className="w-3 h-3 text-stone-200 flex-shrink-0" />
                     Shapewear Size: {calculatedSize} (Step 1 Hip: {formData.shapewearHip} · Step 2 Waist: {formData.shapewearWaist})
                   </span>
                 ) : isStep1Completed ? (
-                  <span className="text-stone-200 font-medium">
+                  <span className="text-white font-semibold">
                     Step 1 Hip ({formData.shapewearHip}) selected · Now tap Step 2 Waist to lock size
                   </span>
                 ) : (

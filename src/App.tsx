@@ -275,7 +275,7 @@ export default function App() {
                 <div className="p-4 sm:p-6 space-y-3">
                   <div className="border-b border-stone-100 pb-3">
                     <h2 className="text-lg sm:text-xl font-bold text-stone-900 tracking-tight">
-                      Intimate Wear Fit Consultation &amp; Sizing Form
+                      Fit Consultation Form
                     </h2>
                     <p className="text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
                       Experience precision intimate wear sizing tailored by <strong>SOIE by Ginza Industries Limited</strong>.
@@ -362,11 +362,11 @@ export default function App() {
               {/* 3. BRA SECTION: Specifications + Step 1 & Step 2 Fit Finder */}
               {formData.includeBra && (
                 <div className="space-y-3">
-                  <div className="bg-slate-700 text-white px-4 py-2 rounded-xl flex items-center justify-between shadow-xs border border-slate-600">
-                    <span className="text-xs sm:text-sm font-semibold tracking-wide">
+                  <div className="bg-[#676765] text-white px-4 py-2.5 rounded-xl flex items-center justify-between shadow-xs border border-[#555553]">
+                    <span className="text-xs sm:text-sm font-bold tracking-wide">
                       Section 1 · Bra Fit Consultation &amp; Sizing
                     </span>
-                    <span className="text-[11px] bg-white/15 px-2 py-0.5 rounded-md font-medium text-slate-100">
+                    <span className="text-[11px] bg-white/20 text-white px-2 py-0.5 rounded-md font-bold">
                       Bra
                     </span>
                   </div>
@@ -388,11 +388,11 @@ export default function App() {
               {/* 4. PANTY SECTION: Specifications + Interactive Sizing Table */}
               {formData.includePanty && (
                 <div className="space-y-3">
-                  <div className="bg-slate-700 text-white px-4 py-2 rounded-xl flex items-center justify-between shadow-xs border border-slate-600">
-                    <span className="text-xs sm:text-sm font-semibold tracking-wide">
+                  <div className="bg-[#676765] text-white px-4 py-2.5 rounded-xl flex items-center justify-between shadow-xs border border-[#555553]">
+                    <span className="text-xs sm:text-sm font-bold tracking-wide">
                       Section 2 · Panty Fit Consultation &amp; Sizing
                     </span>
-                    <span className="text-[11px] bg-white/15 px-2 py-0.5 rounded-md font-medium text-slate-100">
+                    <span className="text-[11px] bg-white/20 text-white px-2 py-0.5 rounded-md font-bold">
                       Panty
                     </span>
                   </div>
@@ -414,11 +414,11 @@ export default function App() {
               {/* 5. SHAPEWEAR SECTION: Specifications + Interactive Sizing Table */}
               {formData.includeShapewear && (
                 <div className="space-y-3">
-                  <div className="bg-slate-700 text-white px-4 py-2 rounded-xl flex items-center justify-between shadow-xs border border-slate-600">
-                    <span className="text-xs sm:text-sm font-semibold tracking-wide">
+                  <div className="bg-[#676765] text-white px-4 py-2.5 rounded-xl flex items-center justify-between shadow-xs border border-[#555553]">
+                    <span className="text-xs sm:text-sm font-bold tracking-wide">
                       Section 3 · Shapewear Fit Consultation &amp; Sizing
                     </span>
-                    <span className="text-[11px] bg-white/15 px-2 py-0.5 rounded-md font-medium text-slate-100">
+                    <span className="text-[11px] bg-white/20 text-white px-2 py-0.5 rounded-md font-bold">
                       Shapewear
                     </span>
                   </div>

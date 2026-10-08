@@ -114,4 +114,9 @@ export interface SubmissionRecord {
   soieSize: string;                // Col O
   rawFormData: FormDataState;
   syncedToGoogleSheet: boolean;
+  hipValue?: string;
+  waistValue?: string;
+  contactValue?: string;
+  emailValue?: string;
+  preferenceValue?: string;
 }

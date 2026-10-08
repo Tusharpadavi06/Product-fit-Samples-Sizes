@@ -193,42 +193,28 @@ export const SoieProductSizeFormBanner: React.FC<{ className?: string }> = ({
 }) => {
   return (
     <div
-      className={`w-full overflow-hidden rounded-t-2xl border-b border-[#a8aaab] select-none bg-[#c5c6c7] text-slate-900 relative shadow-xs ${className}`}
+      className={`w-full overflow-hidden rounded-t-2xl border-b border-[#e59298] select-none bg-[#efa4a9] text-stone-900 relative shadow-xs ${className}`}
     >
       {/* Subtle luxury ambient pattern overlay */}
-      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,white_0%,transparent_60%)] pointer-events-none" />
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,white_0%,transparent_70%)] pointer-events-none" />
 
-      <div className="relative z-10 py-2 sm:py-2.5 px-4 sm:px-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          {/* Left: Official SOIE Company Logo & Corporate Brand Identity */}
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="h-16 sm:h-20 md:h-22 w-auto bg-white p-1 rounded-xl shadow-xs border border-slate-300/80 flex items-center justify-center flex-shrink-0">
-              <img
-                src="/images/soie-logo.jpg"
-                alt="SOIE Official Logo"
-                className="h-full w-auto object-contain rounded-lg"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://i.ibb.co/jPc6QjDj/Soie-Logo.jpg';
-                }}
-              />
-            </div>
-
-            <div className="flex flex-col justify-center">
-              <div className="flex items-center gap-2">
-                <span className="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-wider uppercase text-slate-900 leading-tight">
-                  SOIE
-                </span>
-                <span className="text-slate-400 text-xs sm:text-sm">|</span>
-                <span className="text-xs sm:text-[13px] font-bold tracking-wider uppercase text-slate-800">
-                  Ginza Industries Limited
-                </span>
-              </div>
-              <p className="text-xs sm:text-[13px] text-slate-600 font-medium mt-0.5">
-                Intimate Wear Fit Consultation &amp; Size Finder Form
-              </p>
-            </div>
-          </div>
+      <div className="relative z-10 py-3 sm:py-4 px-4 sm:px-6 flex flex-col items-center justify-center text-center">
+        {/* Official SOIE Company Logo - Centered Only, Larger Size, Seamless (No White Border) */}
+        <div className="h-20 sm:h-24 md:h-28 w-auto flex items-center justify-center flex-shrink-0">
+          <img
+            src="/images/soie-new-logo.jpg"
+            alt="SOIE Official Logo"
+            className="h-full w-auto max-w-[280px] sm:max-w-[340px] md:max-w-[400px] object-contain"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/images/soie-logo.jpg';
+            }}
+          />
         </div>
+
+        {/* Form Title on Next Line */}
+        <p className="text-xs sm:text-[13px] md:text-sm text-stone-900 font-bold mt-2 tracking-wide">
+          Fit Consultation Form
+        </p>
       </div>
     </div>
   );

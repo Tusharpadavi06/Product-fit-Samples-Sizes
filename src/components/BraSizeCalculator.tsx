@@ -234,15 +234,15 @@ export const BraSizeCalculator: React.FC<BraSizeCalculatorProps> = ({
       </div>
 
       {/* ================= COMPACT EXACT RESULT BOX (Cup & Band shown here) ================= */}
-      <div className="bg-slate-700 text-white px-3.5 py-2.5 rounded-xl border border-slate-600 shadow-2xs">
+      <div className="bg-[#676765] text-white px-3.5 py-2.5 rounded-xl border border-[#555553] shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-3">
-          <div className="text-xs sm:text-[13px] font-medium flex items-center gap-2">
-            <span className="text-slate-200">Recommended SOIE Size:</span>
-            <span className="text-sm sm:text-base text-white font-bold tracking-tight bg-slate-800 px-2 py-0.5 rounded border border-slate-600">
+          <div className="text-xs sm:text-[13px] font-bold flex items-center gap-2 text-white">
+            <span>Recommended SOIE Size:</span>
+            <span className="text-sm sm:text-base text-stone-900 font-bold tracking-normal bg-white px-2.5 py-0.5 rounded-md shadow-xs border border-stone-200 font-sans">
               {formData.braSoieSize || (formData.selectedBraBand && formData.selectedBraCup ? `${formData.selectedBraBand}${formData.selectedBraCup.replace('Cup ', '')}` : '—')}
             </span>
           </div>
-          <div className="text-[11px] text-slate-200 font-normal">
+          <div className="text-[11px] text-stone-200 font-medium">
             {formData.selectedBraBand && formData.selectedBraCup ? (
               <span>
                 Band {formData.selectedBraBand} (Underbust: {formData.underbustCm} cms) + {formData.selectedBraCup} (Overbust: {formData.overbustCm} cms)

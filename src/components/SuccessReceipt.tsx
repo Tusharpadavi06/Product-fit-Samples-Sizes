@@ -127,31 +127,22 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
             Your Fit Size Recommendations
           </h3>
           <p className="text-xs text-slate-600 leading-relaxed">
-            Here are your recommended <strong>Bra, Panty, and Shapewear sizes</strong> based on the details you provided.
+            Based on your input, we provide your ideal sizes as follows.
           </p>
         </div>
 
-        {/* Medium-Sized Size Cards for each submitted product (Medium size and sleek grey palette as requested) */}
+        {/* Highlighted Recommendation Boxes in #676765 - Only shows Product & Size with clean font */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {allRecords.map((rec) => (
             <div
               key={rec.id}
-              className="bg-gradient-to-b from-slate-700 to-slate-800 text-white rounded-xl p-3 sm:p-3.5 text-center shadow-xs relative overflow-hidden flex flex-col justify-between border border-slate-600"
+              className="bg-[#676765] text-white rounded-xl p-3 sm:p-4 text-center shadow-xs border border-[#555553] flex flex-col items-center justify-center min-h-[90px]"
             >
-              <div>
-                <span className="text-[10px] sm:text-[11px] uppercase tracking-wider text-slate-300 font-semibold block mb-0.5">
-                  {rec.product} Fit Size
-                </span>
-                <div className="font-serif text-xl sm:text-2xl font-bold text-white my-1 tracking-tight">
-                  {rec.soieSize}
-                </div>
-                <p className="text-[11px] text-slate-200 truncate mt-0.5" title={`Type: ${rec.type}`}>
-                  Type: {rec.type}
-                </p>
-              </div>
-
-              <div className="mt-2 pt-1.5 border-t border-slate-600/80 text-[10px] text-slate-300 font-medium font-mono">
-                {rec.product} · Recommended Size
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-stone-200 block">
+                {rec.product}
+              </span>
+              <div className="font-sans text-2xl sm:text-3xl font-extrabold text-white mt-1 tracking-tight">
+                {rec.soieSize}
               </div>
             </div>
           ))}
@@ -229,13 +220,13 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
                   <div>
                     <span className="text-slate-500 block">Hip:</span>
                     <span className="font-medium text-slate-800">
-                      {rec.rawFormData?.pantyHip || rec.prefOrHipOrWaist}
+                      {rec.hipValue || rec.rawFormData?.pantyHip || rec.prefOrHipOrWaist}
                     </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block">Waist:</span>
                     <span className="font-medium text-slate-800">
-                      {rec.rawFormData?.pantyWaist || rec.underbustOrWaistOrPhone}
+                      {rec.waistValue || rec.rawFormData?.pantyWaist || rec.underbustOrWaistOrPhone}
                     </span>
                   </div>
                 </>
@@ -246,19 +237,19 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
                   <div>
                     <span className="text-slate-500 block">Preference:</span>
                     <span className="font-medium text-slate-800">
-                      {rec.rawFormData?.shapewearPreference || rec.paddingOrRiseOrPref || 'None'}
+                      {rec.preferenceValue || rec.rawFormData?.shapewearPreference || rec.paddingOrRiseOrPref || 'None'}
                     </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block">Hip:</span>
                     <span className="font-medium text-slate-800">
-                      {rec.rawFormData?.shapewearHip || rec.wireOrPrefOrHip}
+                      {rec.hipValue || rec.rawFormData?.shapewearHip || rec.wireOrPrefOrHip}
                     </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block">Waist:</span>
                     <span className="font-medium text-slate-800">
-                      {rec.rawFormData?.shapewearWaist || rec.prefOrHipOrWaist}
+                      {rec.waistValue || rec.rawFormData?.shapewearWaist || rec.prefOrHipOrWaist}
                     </span>
                   </div>
                 </>

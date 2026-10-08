@@ -113,7 +113,7 @@ export const SubmissionsDrawer: React.FC<SubmissionsDrawerProps> = ({
                       {item.product}
                     </span>
                   </div>
-                  <span className="text-base font-serif font-bold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-lg border border-rose-200">
+                  <span className="text-base font-sans font-bold text-stone-900 bg-stone-100 px-2.5 py-0.5 rounded-lg border border-stone-200">
                     Col O: {item.soieSize}
                   </span>
                 </div>
