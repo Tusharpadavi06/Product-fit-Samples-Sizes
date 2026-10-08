@@ -40,20 +40,20 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
   return (
     <div className="max-w-3xl mx-auto my-6 bg-white rounded-3xl border border-stone-200 shadow-xl overflow-hidden animate-fadeIn">
       {/* Top Banner */}
-      <div className="bg-gradient-to-r from-[#7C2136] via-[#B12543] to-[#E85570] text-white p-6 sm:p-8 text-center relative overflow-hidden">
+      <div className="bg-gradient-to-r from-[#441722] via-[#541D2B] to-[#3B141E] text-white p-5 sm:p-7 text-center relative overflow-hidden">
         <div className="absolute top-0 right-0 -mt-6 -mr-6 w-32 h-32 rounded-full bg-white/10 blur-xl pointer-events-none" />
         <div className="relative z-10 flex flex-col items-center">
-          <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-xs flex items-center justify-center mb-3 ring-4 ring-white/30">
-            <CheckCircle2 className="w-8 h-8 text-white" />
+          <div className="w-12 h-12 rounded-full bg-white/15 backdrop-blur-xs flex items-center justify-center mb-2.5 ring-2 ring-white/20">
+            <CheckCircle2 className="w-7 h-7 text-[#F5C2CE]" />
           </div>
 
-          <span className="text-xs font-semibold uppercase tracking-widest text-rose-200 mb-1">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-[#E8BDC7] mb-0.5">
             Fit Consultation Complete
           </span>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-wide">
+          <h2 className="text-xl sm:text-2xl font-bold tracking-wide">
             Consultation Successfully Recorded!
           </h2>
-          <p className="text-xs text-rose-100 max-w-lg mt-1.5 leading-relaxed">
+          <p className="text-xs text-[#F0CBD4] max-w-lg mt-1 leading-relaxed">
             Client: <strong>{primaryRecord.name}</strong> · Category:{' '}
             <strong>{allRecords.map((r) => r.product).join(', ')}</strong>
           </p>

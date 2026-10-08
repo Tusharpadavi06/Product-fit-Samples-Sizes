@@ -75,89 +75,89 @@ export const ShapewearSizeCalculator: React.FC<ShapewearSizeCalculatorProps> = (
     '';
 
   return (
-    <div className="bg-white p-5 sm:p-6 rounded-2xl border border-stone-200 shadow-xs space-y-5">
+    <div className="bg-white p-4 sm:p-5 rounded-2xl border border-stone-200 shadow-xs space-y-4">
       {/* Title & Step Progression Header */}
-      <div className="border-b border-stone-100 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      <div className="border-b border-stone-100 pb-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
         <div>
-          <h3 className="text-sm sm:text-base font-semibold text-stone-900">
+          <h3 className="text-xs sm:text-[13px] font-semibold text-stone-800">
             Select Your Compression Fit Size
           </h3>
-          <p className="text-xs text-stone-600 mt-0.5">
+          <p className="text-[11px] text-stone-500 mt-0.5">
             Step 1: Select To Fit Hip (cm) · Step 2: Select To Fit Waist (cm) to lock both values
           </p>
         </div>
 
         {/* Step Progress Badges */}
-        <div className="flex items-center gap-2 self-start sm:self-auto text-xs">
+        <div className="flex items-center gap-1.5 self-start sm:self-auto text-[11px]">
           <span
-            className={`px-2.5 py-1 rounded-lg font-semibold flex items-center gap-1 ${
+            className={`px-2 py-0.5 rounded-md font-medium flex items-center gap-1 ${
               isStep1Completed
-                ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                : 'bg-rose-100 text-rose-800 ring-1 ring-rose-300 animate-pulse'
+                ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                : 'bg-[#F7EBEF] text-[#691829] ring-1 ring-[#872338]/30'
             }`}
           >
-            {isStep1Completed ? <Check className="w-3.5 h-3.5" /> : null}
+            {isStep1Completed ? <Check className="w-3 h-3" /> : null}
             Step 1: Hip {isStep1Completed ? '✓' : ''}
           </span>
 
-          <ArrowRight className="w-3.5 h-3.5 text-stone-400" />
+          <ArrowRight className="w-3 h-3 text-stone-400" />
 
           <span
-            className={`px-2.5 py-1 rounded-lg font-semibold flex items-center gap-1 ${
+            className={`px-2 py-0.5 rounded-md font-medium flex items-center gap-1 ${
               isStep2Completed
-                ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
                 : isStep1Completed
-                ? 'bg-rose-100 text-rose-800 ring-2 ring-rose-400 animate-pulse'
+                ? 'bg-[#F7EBEF] text-[#691829] ring-1 ring-[#872338]/40'
                 : 'bg-stone-100 text-stone-400'
             }`}
           >
-            {isStep2Completed ? <Check className="w-3.5 h-3.5" /> : null}
+            {isStep2Completed ? <Check className="w-3 h-3" /> : null}
             Step 2: Waist {isStep2Completed ? '✓' : ''}
           </span>
         </div>
       </div>
 
       {/* SIDE-BY-SIDE LAYOUT: Image on Left, Step 1 & Step 2 Side-by-Side Boxes on Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
         {/* Left: Shapewear Measurement Photo */}
         <div className="lg:col-span-4 flex flex-col items-center justify-center py-1">
           <ShapewearMeasurementPhoto size="sm" />
-          <p className="text-[11px] text-stone-500 text-center mt-2 px-2">
+          <p className="text-[10px] text-stone-500 text-center mt-1.5 px-2">
             Wrap tape snugly around widest hip line for Step 1, then waist curve for Step 2.
           </p>
         </div>
 
         {/* Right: Step 1 Box and Step 2 Box */}
-        <div className="lg:col-span-8 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="lg:col-span-8 space-y-3.5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {/* ================= STEP 1: TO FIT HIP (CM) ================= */}
             <div
-              className={`p-3.5 sm:p-4 rounded-xl border transition-all ${
+              className={`p-3 sm:p-3.5 rounded-xl border transition-all ${
                 isStep1Completed
-                  ? 'bg-stone-50/80 border-emerald-300'
-                  : 'bg-rose-50/30 border-rose-300 ring-1 ring-rose-200'
+                  ? 'bg-stone-50/80 border-stone-200'
+                  : 'bg-[#FAF4F6] border-[#E8CCD4] ring-1 ring-[#872338]/20'
               }`}
             >
-              <div className="flex items-center justify-between border-b border-stone-200 pb-2 mb-2.5">
+              <div className="flex items-center justify-between border-b border-stone-200/80 pb-1.5 mb-2">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-xs font-bold text-rose-900 uppercase tracking-wide">
+                    <span className="text-[11px] font-bold text-[#5A1725] uppercase tracking-wide">
                       Step 1 · To Fit Hip (cm)
                     </span>
                     {isStep1Completed && (
-                      <span className="text-[10px] bg-emerald-600 text-white font-bold px-1.5 py-0.2 rounded">
+                      <span className="text-[9px] bg-emerald-600 text-white font-bold px-1.5 py-0.2 rounded">
                         Done
                       </span>
                     )}
                   </div>
-                  <span className="text-[11px] text-stone-500 block">
+                  <span className="text-[10px] text-stone-500 block">
                     (Tap to choose Hip measurement)
                   </span>
                 </div>
               </div>
 
               {/* Grid of Hip Options */}
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-1.5">
                 {SHAPEWEAR_SIZE_CHART.map((item) => {
                   const hipVal = getHipStr(item);
                   const isSelected = formData.shapewearHip === hipVal;
@@ -167,21 +167,21 @@ export const ShapewearSizeCalculator: React.FC<ShapewearSizeCalculatorProps> = (
                       type="button"
                       key={item.size}
                       onClick={() => handleSelectHip(item)}
-                      className={`py-2 px-2 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center ${
+                      className={`py-2 px-1.5 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center ${
                         isSelected
-                          ? 'bg-rose-600 text-white border-rose-700 font-bold shadow-xs ring-2 ring-rose-400'
-                          : 'bg-white hover:bg-rose-50/70 border-stone-200 text-stone-800'
+                          ? 'bg-[#872338] text-white border-[#701B2C] font-semibold shadow-2xs ring-1 ring-[#872338]'
+                          : 'bg-white hover:bg-[#FAF4F6] border-stone-200 text-stone-800 hover:border-[#872338]/30'
                       }`}
                     >
-                      <div className="flex items-center justify-center gap-1">
-                        <span className="text-xs sm:text-sm font-bold tracking-tight">
+                      <div className="flex items-center justify-center gap-0.5">
+                        <span className="text-xs sm:text-[13px] font-semibold tracking-tight">
                           {item.hipCm}
                         </span>
-                        {isSelected && <Check className="w-3 h-3 text-white stroke-[3]" />}
+                        {isSelected && <Check className="w-2.5 h-2.5 text-white stroke-[2.5]" />}
                       </div>
                       <span
-                        className={`text-[10px] ${
-                          isSelected ? 'text-rose-100 font-semibold' : 'text-stone-500'
+                        className={`text-[10px] leading-none ${
+                          isSelected ? 'text-[#FAD2DC] font-medium' : 'text-stone-500'
                         }`}
                       >
                         cm
@@ -194,46 +194,46 @@ export const ShapewearSizeCalculator: React.FC<ShapewearSizeCalculatorProps> = (
 
             {/* ================= STEP 2: TO FIT WAIST (CM) ================= */}
             <div
-              className={`p-3.5 sm:p-4 rounded-xl border transition-all ${
+              className={`p-3 sm:p-3.5 rounded-xl border transition-all ${
                 !isStep1Completed
                   ? 'bg-stone-50/50 border-stone-200 opacity-60'
                   : isStep2Completed
-                  ? 'bg-stone-50/80 border-emerald-300'
-                  : 'bg-rose-50/40 border-rose-400 ring-2 ring-rose-300 shadow-sm'
+                  ? 'bg-stone-50/80 border-stone-200'
+                  : 'bg-[#FAF4F6] border-[#872338] ring-1 ring-[#872338]/40 shadow-xs'
               }`}
             >
-              <div className="flex items-center justify-between border-b border-stone-200 pb-2 mb-2.5">
+              <div className="flex items-center justify-between border-b border-stone-200/80 pb-1.5 mb-2">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-xs font-bold text-rose-900 uppercase tracking-wide">
+                    <span className="text-[11px] font-bold text-[#5A1725] uppercase tracking-wide">
                       Step 2 · To Fit Waist (cm)
                     </span>
                     {isStep2Completed ? (
-                      <span className="text-[10px] bg-emerald-600 text-white font-bold px-1.5 py-0.2 rounded">
+                      <span className="text-[9px] bg-emerald-600 text-white font-bold px-1.5 py-0.2 rounded">
                         Done
                       </span>
                     ) : isStep1Completed ? (
-                      <span className="text-[10px] bg-rose-600 text-white font-bold px-1.5 py-0.2 rounded animate-pulse">
+                      <span className="text-[9px] bg-[#872338] text-white font-bold px-1.5 py-0.2 rounded">
                         Active
                       </span>
                     ) : null}
                   </div>
-                  <span className="text-[11px] text-stone-500 block">
+                  <span className="text-[10px] text-stone-500 block">
                     (Tap to choose Waist measurement)
                   </span>
                 </div>
               </div>
 
               {!isStep1Completed ? (
-                <div className="py-8 text-center text-stone-500 text-xs flex flex-col items-center justify-center space-y-1.5">
-                  <Lock className="w-5 h-5 text-stone-400" />
-                  <p className="font-semibold text-stone-700">Step 2 Locked</p>
-                  <p className="text-[11px] text-stone-500">
+                <div className="py-7 text-center text-stone-500 text-xs flex flex-col items-center justify-center space-y-1">
+                  <Lock className="w-4 h-4 text-stone-400" />
+                  <p className="font-semibold text-stone-700 text-xs">Step 2 Locked</p>
+                  <p className="text-[10px] text-stone-500">
                     Select your Hip measurement in Step 1 first to unlock Waist options.
                   </p>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 gap-2 animate-fadeIn">
+                <div className="grid grid-cols-2 gap-1.5 animate-fadeIn">
                   {SHAPEWEAR_SIZE_CHART.map((item) => {
                     const waistVal = getWaistStr(item);
                     const isSelected = formData.shapewearWaist === waistVal;
@@ -243,21 +243,21 @@ export const ShapewearSizeCalculator: React.FC<ShapewearSizeCalculatorProps> = (
                         type="button"
                         key={item.size}
                         onClick={() => handleSelectWaist(item)}
-                        className={`py-2 px-2 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center ${
+                        className={`py-2 px-1.5 rounded-lg border text-center transition-all cursor-pointer flex flex-col items-center justify-center ${
                           isSelected
-                            ? 'bg-rose-600 text-white border-rose-700 font-bold shadow-xs ring-2 ring-rose-400'
-                            : 'bg-white hover:bg-rose-50/70 border-stone-200 text-stone-800'
+                            ? 'bg-[#872338] text-white border-[#701B2C] font-semibold shadow-2xs ring-1 ring-[#872338]'
+                            : 'bg-white hover:bg-[#FAF4F6] border-stone-200 text-stone-800 hover:border-[#872338]/30'
                         }`}
                       >
-                        <div className="flex items-center justify-center gap-1">
-                          <span className="text-xs sm:text-sm font-bold tracking-tight">
+                        <div className="flex items-center justify-center gap-0.5">
+                          <span className="text-xs sm:text-[13px] font-semibold tracking-tight">
                             {item.waistCm}
                           </span>
-                          {isSelected && <Check className="w-3 h-3 text-white stroke-[3]" />}
+                          {isSelected && <Check className="w-2.5 h-2.5 text-white stroke-[2.5]" />}
                         </div>
                         <span
-                          className={`text-[10px] ${
-                            isSelected ? 'text-rose-100 font-semibold' : 'text-stone-500'
+                          className={`text-[10px] leading-none ${
+                            isSelected ? 'text-[#FAD2DC] font-medium' : 'text-stone-500'
                           }`}
                         >
                           cm
@@ -271,22 +271,22 @@ export const ShapewearSizeCalculator: React.FC<ShapewearSizeCalculatorProps> = (
           </div>
 
           {/* Compact Recommended SOIE Size Box */}
-          <div className="bg-stone-900 text-white px-4 py-3 rounded-xl border border-stone-800 shadow-xs">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
-              <div className="text-xs sm:text-sm font-medium flex items-center gap-2">
+          <div className="bg-[#1C1917] text-white px-3.5 py-2.5 rounded-xl border border-stone-800 shadow-2xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-3">
+              <div className="text-xs sm:text-[13px] font-medium flex items-center gap-2">
                 <span className="text-stone-300">Recommended SOIE Size:</span>
-                <span className="text-lg sm:text-xl text-rose-300 font-bold tracking-tight bg-stone-800 px-2.5 py-0.5 rounded-md border border-stone-700">
+                <span className="text-sm sm:text-base text-[#F5C2CE] font-bold tracking-tight bg-stone-800/90 px-2 py-0.5 rounded border border-stone-700">
                   {calculatedSize || '—'}
                 </span>
               </div>
-              <div className="text-xs text-stone-300 font-normal">
+              <div className="text-[11px] text-stone-300 font-normal">
                 {isBothCompleted ? (
                   <span className="flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-rose-400 flex-shrink-0" />
+                    <Sparkles className="w-3 h-3 text-[#E8BDC7] flex-shrink-0" />
                     Shapewear Size: {calculatedSize} (Step 1 Hip: {formData.shapewearHip} · Step 2 Waist: {formData.shapewearWaist})
                   </span>
                 ) : isStep1Completed ? (
-                  <span className="text-rose-300 font-medium">
+                  <span className="text-[#F5C2CE] font-medium">
                     Step 1 Hip ({formData.shapewearHip}) selected · Now tap Step 2 Waist to lock size
                   </span>
                 ) : (
