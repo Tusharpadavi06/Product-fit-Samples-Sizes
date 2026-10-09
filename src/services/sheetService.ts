@@ -5,7 +5,7 @@ const STORAGE_KEY = 'soie_fit_submissions_v1';
 const WEBHOOK_URL_KEY = 'soie_google_apps_script_url';
 
 /**
- * Maps Bra form state to Columns B through O
+ * Maps Bra form state to Columns B through P (Tab 'Bra')
  */
 export function mapBraToSheetColumns(data: FormDataState) {
   const timestamp = new Date().toLocaleString('en-IN', {
@@ -38,7 +38,8 @@ export function mapBraToSheetColumns(data: FormDataState) {
 }
 
 /**
- * Maps Panty form state to Columns B through O
+ * Maps Panty form state to Columns B through N (Tab 'Panty')
+ * Note: Waist removed. Contact is Col K, Email is Col L, Soie Size is Col M, Sample Interest is Col N.
  */
 export function mapPantyToSheetColumns(data: FormDataState) {
   const timestamp = new Date().toLocaleString('en-IN', {
@@ -58,11 +59,10 @@ export function mapPantyToSheetColumns(data: FormDataState) {
     colH_Rise: data.pantyRise || 'N/A',
     colI_Preference: data.pantyPreference || 'None',
     colJ_AllRoundHip: data.pantyHip || 'N/A',
-    colK_AllRoundWaist: data.pantyWaist || 'N/A',
-    colL_Contact: data.contactNumber,
-    colM_Email: data.emailId,
-    colN_SoieSize: data.pantySoieSize || data.selectedPantySize || 'N/A',
-    colO_SampleInterest:
+    colK_Contact: data.contactNumber,
+    colL_Email: data.emailId,
+    colM_SoieSize: data.pantySoieSize || data.selectedPantySize || 'N/A',
+    colN_SampleInterest:
       data.sampleInterestPanty || data.samplesInterested?.includes('Panty')
         ? 'Interested'
         : 'No',
@@ -70,7 +70,8 @@ export function mapPantyToSheetColumns(data: FormDataState) {
 }
 
 /**
- * Maps Shapewear form state to Columns B through N
+ * Maps Shapewear form state to Columns B through M (Tab 'Shapewear')
+ * Note: Waist removed. Contact is Col J, Email is Col K, Soie Size is Col L, Sample Interest is Col M.
  */
 export function mapShapewearToSheetColumns(data: FormDataState) {
   const timestamp = new Date().toLocaleString('en-IN', {
@@ -89,11 +90,10 @@ export function mapShapewearToSheetColumns(data: FormDataState) {
     colG_Type: data.shapewearType || 'N/A',
     colH_Preference: data.shapewearPreference || 'None',
     colI_AllRoundHip: data.shapewearHip || 'N/A',
-    colJ_AllRoundWaist: data.shapewearWaist || 'N/A',
-    colK_Contact: data.contactNumber,
-    colL_Email: data.emailId,
-    colM_SoieSize: data.shapewearSoieSize || data.selectedShapewearSize || 'N/A',
-    colN_SampleInterest:
+    colJ_Contact: data.contactNumber,
+    colK_Email: data.emailId,
+    colL_SoieSize: data.shapewearSoieSize || data.selectedShapewearSize || 'N/A',
+    colM_SampleInterest:
       data.sampleInterestShapewear || data.samplesInterested?.includes('Shapewear')
         ? 'Interested'
         : 'No',
@@ -188,6 +188,9 @@ export async function submitConsultationToGoogleSheet(
       phoneOrEmailOrSize: data.contactNumber,
       emailOrSize: data.emailId,
       soieSize: data.braSoieSize || '34C',
+      contactValue: data.contactNumber,
+      emailValue: data.emailId,
+      preferenceValue: data.braPreference || 'None',
       rawFormData: data,
       syncedToGoogleSheet: false,
     });
@@ -213,21 +216,20 @@ export async function submitConsultationToGoogleSheet(
       type: data.pantyType || 'N/A',
       paddingOrRiseOrPref: data.pantyRise || 'Mid',
       wireOrPrefOrHip: data.pantyPreference || 'None',
-      prefOrHipOrWaist: data.pantyHip || '36-38 in',
-      underbustOrWaistOrPhone: data.pantyWaist || '71.12 cm',
-      overbustOrPhoneOrEmail: data.contactNumber,
-      phoneOrEmailOrSize: data.emailId,
+      prefOrHipOrWaist: data.pantyHip || '',
+      underbustOrWaistOrPhone: data.contactNumber,
+      overbustOrPhoneOrEmail: data.emailId,
+      phoneOrEmailOrSize: data.pantySoieSize || 'M',
       emailOrSize: data.pantySoieSize || 'M',
       soieSize: data.pantySoieSize || 'M',
       hipValue: data.pantyHip || '',
-      waistValue: data.pantyWaist || '',
       contactValue: data.contactNumber,
       emailValue: data.emailId,
       preferenceValue: data.pantyPreference || 'None',
       rawFormData: {
         ...data,
         pantyHip: data.pantyHip,
-        pantyWaist: data.pantyWaist,
+        pantyWaist: '',
       },
       syncedToGoogleSheet: false,
     });
@@ -253,21 +255,20 @@ export async function submitConsultationToGoogleSheet(
       type: data.shapewearType || 'N/A',
       paddingOrRiseOrPref: data.shapewearPreference || 'None',
       wireOrPrefOrHip: data.shapewearHip || '',
-      prefOrHipOrWaist: data.shapewearWaist || '',
-      underbustOrWaistOrPhone: data.contactNumber,
-      overbustOrPhoneOrEmail: data.emailId,
+      prefOrHipOrWaist: data.contactNumber,
+      underbustOrWaistOrPhone: data.emailId,
+      overbustOrPhoneOrEmail: data.shapewearSoieSize || 'M',
       phoneOrEmailOrSize: data.shapewearSoieSize || 'M',
       emailOrSize: data.shapewearSoieSize || 'M',
       soieSize: data.shapewearSoieSize || 'M',
       hipValue: data.shapewearHip || '',
-      waistValue: data.shapewearWaist || '',
       contactValue: data.contactNumber,
       emailValue: data.emailId,
       preferenceValue: data.shapewearPreference || 'None',
       rawFormData: {
         ...data,
         shapewearHip: data.shapewearHip,
-        shapewearWaist: data.shapewearWaist,
+        shapewearWaist: '',
       },
       syncedToGoogleSheet: false,
     });
@@ -342,12 +343,12 @@ export async function submitToGoogleSheet(
 
 /**
  * Generates ready-to-paste Google Apps Script code for Google Sheet ID:
- * 1JsrvQb-QKtfjTivCwBzBDsUGIFoPVIH
+ * 12htwm8HnCSrEwz99fyn2-szVqnIiNCyxIiOTMpKifQQ
  *
  * Saves into separate sheet tabs based on product type:
- * - Tab 'Bra' (Columns B to O)
- * - Tab 'Panty' (Columns B to N)
- * - Tab 'Shapewear' (Columns B to M)
+ * - Tab 'Bra' (Columns B to P, 15 columns)
+ * - Tab 'Panty' (Columns B to N, 13 columns - Waist removed)
+ * - Tab 'Shapewear' (Columns B to M, 12 columns - Waist removed)
  */
 export function generateGoogleAppsScriptCode(): string {
   return `/**
@@ -355,6 +356,10 @@ export function generateGoogleAppsScriptCode(): string {
  * SOIE Fit Consultation Portal - Google Apps Script Webhook
  * Spreadsheet ID: ${GOOGLE_SHEET_ID}
  * Automatically routes records to tabs: 'Bra', 'Panty', 'Shapewear'
+ * With Sample Interest in:
+ * - Bra: Column P
+ * - Panty: Column N
+ * - Shapewear: Column M
  * =========================================================================
  */
 
@@ -389,8 +394,6 @@ function doPost(e) {
     }
 
     const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-    
-    // Support either multi-record batch or single record
     const records = payload.records || [payload];
     const results = [];
 
@@ -406,7 +409,6 @@ function doPost(e) {
         tabName = "Shapewear";
       }
 
-      // Get or create the sheet tab
       let sheet = ss.getSheetByName(tabName);
       if (!sheet) {
         sheet = ss.insertSheet(tabName);
@@ -423,7 +425,7 @@ function doPost(e) {
       const timestamp = d.timestamp || new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
       
       sheet.getRange(nextRow, 1).setValue(timestamp); // Col A: Timestamp
-      sheet.getRange(nextRow, 2, 1, rowValues.length).setValues([rowValues]); // Col B to Col O/N/M
+      sheet.getRange(nextRow, 2, 1, rowValues.length).setValues([rowValues]); // Col B to Col P/N/M
 
       results.push({
         product: tabName,
@@ -446,16 +448,16 @@ function doPost(e) {
 }
 
 /**
- * Initializes Sheet Headers matching exact user requirements:
- * - Bra (Cols B to O)
- * - Panty (Cols B to N)
- * - Shapewear (Cols B to M)
+ * Initializes Sheet Headers:
+ * - Bra: Cols B to P (15 columns, Col P = Sample Interested)
+ * - Panty: Cols B to N (13 columns, Col N = Interested Status, Waist removed)
+ * - Shapewear: Cols B to M (12 columns, Col M = Interested Status, Waist removed)
  */
 function initSheetHeaders(sheet, tabName) {
   let headers = [];
   
   if (tabName === "Bra") {
-    // Col A: Timestamp, Cols B - P:
+    // Col A: Timestamp | Cols B to P:
     headers = [
       "Timestamp",
       "Name",
@@ -472,10 +474,10 @@ function initSheetHeaders(sheet, tabName) {
       "Contact Number",
       "Email id",
       "Soie Size",
-      "Sample Interested"
+      "Sample Interested" // Col P
     ];
   } else if (tabName === "Panty") {
-    // Col A: Timestamp, Cols B - O:
+    // Col A: Timestamp | Cols B to N:
     headers = [
       "Timestamp",
       "Name",
@@ -487,14 +489,13 @@ function initSheetHeaders(sheet, tabName) {
       "Rise",
       "Preference if any",
       "All round Hip",
-      "All round Waist",
       "Contact Number",
       "Email id",
       "Soie Size",
-      "Sample Interested"
+      "Interested Status" // Col N
     ];
   } else {
-    // Shapewear: Col A: Timestamp, Cols B - N:
+    // Shapewear: Col A: Timestamp | Cols B to M:
     headers = [
       "Timestamp",
       "Name",
@@ -505,24 +506,21 @@ function initSheetHeaders(sheet, tabName) {
       "Type",
       "Preference if any",
       "All round Hip",
-      "All round Waist",
       "Contact Number",
       "Email id",
       "Soie Size",
-      "Sample Interested"
+      "Interested Status" // Col M
     ];
   }
 
-  sheet.appendRow(headers);
-  const headerRange = sheet.getRange(1, 1, 1, headers.length);
-  headerRange.setFontWeight("bold");
-  headerRange.setBackground("#FCE7E9");
-  headerRange.setFontColor("#7C2136");
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+  sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
+  sheet.getRange(1, 1, 1, headers.length).setBackground("#FCE8ED");
   sheet.setFrozenRows(1);
 }
 
 /**
- * Builds data array for Columns B onwards based on tab type
+ * Builds data array for Columns B onwards
  */
 function buildRowForProduct(tabName, d) {
   const formatPhone = function(p) {
@@ -530,7 +528,7 @@ function buildRowForProduct(tabName, d) {
   };
 
   if (tabName === "Bra") {
-    // Columns B to P (15 values)
+    // Columns B to P (15 columns) -> Col P = Sample Interested
     var sampleVal = d.colP_SampleInterest || (d.sampleInterestBra ? "Interested" : (d.samplesInterested && d.samplesInterested.indexOf("Bra") !== -1 ? "Interested" : "No"));
     return [
       d.colB_Name || d.name || "",
@@ -547,11 +545,11 @@ function buildRowForProduct(tabName, d) {
       formatPhone(d.colM_Contact || d.contactNumber),
       d.colN_Email || d.emailId || "",
       d.colO_SoieSize || d.braSoieSize || d.soieSize || "",
-      sampleVal
+      sampleVal // Col P
     ];
   } else if (tabName === "Panty") {
-    // Columns B to O (14 values)
-    var sampleVal = d.colO_SampleInterest || (d.sampleInterestPanty ? "Interested" : (d.samplesInterested && d.samplesInterested.indexOf("Panty") !== -1 ? "Interested" : "No"));
+    // Columns B to N (13 columns) -> Col N = Interested Status
+    var sampleVal = d.colN_SampleInterest || d.colO_SampleInterest || (d.sampleInterestPanty ? "Interested" : (d.samplesInterested && d.samplesInterested.indexOf("Panty") !== -1 ? "Interested" : "No"));
     return [
       d.colB_Name || d.name || "",
       "Panty",
@@ -562,15 +560,14 @@ function buildRowForProduct(tabName, d) {
       d.colH_Rise || d.pantyRise || "",
       d.colI_Preference || d.pantyPreference || "",
       d.colJ_AllRoundHip || d.pantyHip || "",
-      d.colK_AllRoundWaist || d.pantyWaist || "",
-      formatPhone(d.colL_Contact || d.contactNumber),
-      d.colM_Email || d.emailId || "",
-      d.colN_SoieSize || d.pantySoieSize || d.selectedPantySize || "",
-      sampleVal
+      formatPhone(d.colK_Contact || d.colL_Contact || d.contactNumber),
+      d.colL_Email || d.colM_Email || d.emailId || "",
+      d.colM_SoieSize || d.colN_SoieSize || d.pantySoieSize || d.selectedPantySize || "",
+      sampleVal // Col N
     ];
   } else {
-    // Shapewear: Columns B to N (13 values)
-    var sampleVal = d.colN_SampleInterest || (d.sampleInterestShapewear ? "Interested" : (d.samplesInterested && d.samplesInterested.indexOf("Shapewear") !== -1 ? "Interested" : "No"));
+    // Shapewear: Columns B to M (12 columns) -> Col M = Interested Status
+    var sampleVal = d.colM_SampleInterest || d.colN_SampleInterest || (d.sampleInterestShapewear ? "Interested" : (d.samplesInterested && d.samplesInterested.indexOf("Shapewear") !== -1 ? "Interested" : "No"));
     return [
       d.colB_Name || d.name || "",
       "Shapewear",
@@ -580,11 +577,10 @@ function buildRowForProduct(tabName, d) {
       d.colG_Type || d.shapewearType || "",
       d.colH_Preference || d.shapewearPreference || "",
       d.colI_AllRoundHip || d.shapewearHip || "",
-      d.colJ_AllRoundWaist || d.shapewearWaist || "",
-      formatPhone(d.colK_Contact || d.contactNumber),
-      d.colL_Email || d.emailId || "",
-      d.colM_SoieSize || d.shapewearSoieSize || d.selectedShapewearSize || "",
-      sampleVal
+      formatPhone(d.colJ_Contact || d.colK_Contact || d.contactNumber),
+      d.colK_Email || d.colL_Email || d.emailId || "",
+      d.colL_SoieSize || d.colM_SoieSize || d.shapewearSoieSize || d.selectedShapewearSize || "",
+      sampleVal // Col M
     ];
   }
 }
@@ -592,7 +588,7 @@ function buildRowForProduct(tabName, d) {
 }
 
 /**
- * Export records as CSV
+ * Export records as CSV with exact tab headers
  */
 export function exportSubmissionsToCSV(category?: ProductCategory) {
   const records = getStoredSubmissions().filter(
@@ -604,43 +600,147 @@ export function exportSubmissionsToCSV(category?: ProductCategory) {
     return;
   }
 
-  const headers = [
-    'Submission ID',
-    'Timestamp',
-    'Product',
-    'Name',
-    'Current Size',
-    'Brands You Use',
-    'Style Number',
-    'Type',
-    'Col H (Padding/Rise/Pref)',
-    'Col I (Wire/Pref/Hip)',
-    'Col J (Pref/Hip/Waist)',
-    'Col K (Underbust/Waist/Phone)',
-    'Col L (Overbust/Phone/Email)',
-    'Col M (Phone/Email/Soie Size)',
-    'Col N (Email/Soie Size)',
-    'Col O (Soie Size)',
-  ];
+  let headers: string[] = [];
+  let rows: string[][] = [];
 
-  const rows = records.map((r) => [
-    `"${r.id}"`,
-    `"${r.timestamp}"`,
-    `"${r.product}"`,
-    `"${r.name}"`,
-    `"${r.currentSize}"`,
-    `"${r.brandsYouUse}"`,
-    `"${r.styleNumber || ''}"`,
-    `"${r.type || ''}"`,
-    `"${r.paddingOrRiseOrPref || ''}"`,
-    `"${r.wireOrPrefOrHip || ''}"`,
-    `"${r.prefOrHipOrWaist || ''}"`,
-    `"${r.underbustOrWaistOrPhone || ''}"`,
-    `"${r.overbustOrPhoneOrEmail || ''}"`,
-    `"${r.phoneOrEmailOrSize || ''}"`,
-    `"${r.emailOrSize || ''}"`,
-    `"${r.soieSize || ''}"`,
-  ]);
+  if (category === 'Bra') {
+    headers = [
+      'Submission ID',
+      'Timestamp',
+      'Name',
+      'Product',
+      'Size',
+      'Brands you use',
+      'Styel number if know',
+      'Type',
+      'Padding',
+      'Wire',
+      'Preference if any',
+      'Under bust',
+      'Over Bust',
+      'Contact Number',
+      'Email id',
+      'Soie Size',
+      'Sample Interested',
+    ];
+    rows = records.map((r) => [
+      `"${r.id}"`,
+      `"${r.timestamp}"`,
+      `"${r.name}"`,
+      '"Bra"',
+      `"${r.currentSize}"`,
+      `"${r.brandsYouUse}"`,
+      `"${r.styleNumber || ''}"`,
+      `"${r.type || ''}"`,
+      `"${r.paddingOrRiseOrPref || ''}"`,
+      `"${r.wireOrPrefOrHip || ''}"`,
+      `"${r.prefOrHipOrWaist || ''}"`,
+      `"${r.underbustOrWaistOrPhone || ''}"`,
+      `"${r.overbustOrPhoneOrEmail || ''}"`,
+      `"${r.contactValue || r.phoneOrEmailOrSize || ''}"`,
+      `"${r.emailValue || r.emailOrSize || ''}"`,
+      `"${r.soieSize || ''}"`,
+      `"${r.rawFormData?.sampleInterestBra ? 'Interested' : 'No'}"`,
+    ]);
+  } else if (category === 'Panty') {
+    headers = [
+      'Submission ID',
+      'Timestamp',
+      'Name',
+      'Product',
+      'Size',
+      'Brands you use',
+      'Styel number if know',
+      'Type',
+      'Rise',
+      'Preference if any',
+      'All round Hip',
+      'Contact Number',
+      'Email id',
+      'Soie Size',
+      'Interested Status',
+    ];
+    rows = records.map((r) => [
+      `"${r.id}"`,
+      `"${r.timestamp}"`,
+      `"${r.name}"`,
+      '"Panty"',
+      `"${r.currentSize}"`,
+      `"${r.brandsYouUse}"`,
+      `"${r.styleNumber || ''}"`,
+      `"${r.type || ''}"`,
+      `"${r.paddingOrRiseOrPref || ''}"`,
+      `"${r.preferenceValue || ''}"`,
+      `"${r.hipValue || ''}"`,
+      `"${r.contactValue || ''}"`,
+      `"${r.emailValue || ''}"`,
+      `"${r.soieSize || ''}"`,
+      `"${r.rawFormData?.sampleInterestPanty ? 'Interested' : 'No'}"`,
+    ]);
+  } else if (category === 'Shapewear') {
+    headers = [
+      'Submission ID',
+      'Timestamp',
+      'Name',
+      'Product',
+      'Size',
+      'Brands you use',
+      'Styel number if know',
+      'Type',
+      'Preference if any',
+      'All round Hip',
+      'Contact Number',
+      'Email id',
+      'Soie Size',
+      'Interested Status',
+    ];
+    rows = records.map((r) => [
+      `"${r.id}"`,
+      `"${r.timestamp}"`,
+      `"${r.name}"`,
+      '"Shapewear"',
+      `"${r.currentSize}"`,
+      `"${r.brandsYouUse}"`,
+      `"${r.styleNumber || ''}"`,
+      `"${r.type || ''}"`,
+      `"${r.preferenceValue || ''}"`,
+      `"${r.hipValue || ''}"`,
+      `"${r.contactValue || ''}"`,
+      `"${r.emailValue || ''}"`,
+      `"${r.soieSize || ''}"`,
+      `"${r.rawFormData?.sampleInterestShapewear ? 'Interested' : 'No'}"`,
+    ]);
+  } else {
+    // All
+    headers = [
+      'Submission ID',
+      'Timestamp',
+      'Product',
+      'Name',
+      'Current Size',
+      'Brands You Use',
+      'Style Number',
+      'Type',
+      'Hip Measurement',
+      'Contact Number',
+      'Email Id',
+      'Soie Size',
+    ];
+    rows = records.map((r) => [
+      `"${r.id}"`,
+      `"${r.timestamp}"`,
+      `"${r.product}"`,
+      `"${r.name}"`,
+      `"${r.currentSize}"`,
+      `"${r.brandsYouUse}"`,
+      `"${r.styleNumber || ''}"`,
+      `"${r.type || ''}"`,
+      `"${r.hipValue || r.underbustOrWaistOrPhone || ''}"`,
+      `"${r.contactValue || r.phoneOrEmailOrSize || ''}"`,
+      `"${r.emailValue || r.emailOrSize || ''}"`,
+      `"${r.soieSize || ''}"`,
+    ]);
+  }
 
   const csvContent =
     'data:text/csv;charset=utf-8,' +

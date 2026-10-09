@@ -1,6 +1,6 @@
 {
   "name": "SOIE Perfect Fit Consultation & Size Finder Form",
-  "description": "Professional intimate wear fit consultation and sizing form for SOIE by Ginza Industries. Interactive bra, panty, and shapewear size calculators with automatic Google Sheets synchronization.",
+  "description": "Professional intimate wear fit consultation and sizing form for SOIE. Interactive bra, panty, and shapewear size calculators with automatic Google Sheets synchronization.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

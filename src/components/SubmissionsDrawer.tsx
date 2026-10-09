@@ -114,7 +114,7 @@ export const SubmissionsDrawer: React.FC<SubmissionsDrawerProps> = ({
                     </span>
                   </div>
                   <span className="text-base font-sans font-bold text-stone-900 bg-stone-100 px-2.5 py-0.5 rounded-lg border border-stone-200">
-                    Col O: {item.soieSize}
+                    SOIE: {item.soieSize}
                   </span>
                 </div>
 
@@ -203,38 +203,96 @@ export const SubmissionsDrawer: React.FC<SubmissionsDrawerProps> = ({
                 <span className="text-stone-500">Col G: Type</span>
                 <span className="font-medium text-stone-900">{selectedSubmission.type}</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-stone-100">
-                <span className="text-stone-500">Col H: Padding / Rise / Pref</span>
-                <span className="font-medium text-stone-900">{selectedSubmission.paddingOrRiseOrPref}</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-stone-100">
-                <span className="text-stone-500">Col I: Wire / Pref / Hip</span>
-                <span className="font-medium text-stone-900">{selectedSubmission.wireOrPrefOrHip}</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-stone-100">
-                <span className="text-stone-500">Col J: Pref / Hip / Waist</span>
-                <span className="font-medium text-stone-900">{selectedSubmission.prefOrHipOrWaist}</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-stone-100">
-                <span className="text-stone-500">Col K: Underbust / Waist / Phone</span>
-                <span className="font-medium text-stone-900">{selectedSubmission.underbustOrWaistOrPhone}</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-stone-100">
-                <span className="text-stone-500">Col L: Overbust / Phone / Email</span>
-                <span className="font-medium text-stone-900">{selectedSubmission.overbustOrPhoneOrEmail}</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-stone-100">
-                <span className="text-stone-500">Col M: Phone / Email / Size</span>
-                <span className="font-medium text-stone-900">{selectedSubmission.phoneOrEmailOrSize}</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-stone-100">
-                <span className="text-stone-500">Col N: Email / Size</span>
-                <span className="font-medium text-stone-900">{selectedSubmission.emailOrSize}</span>
-              </div>
-              <div className="flex justify-between py-2 bg-rose-50 px-2 rounded-lg">
-                <span className="font-bold text-rose-900">Col O: Official Soie Size</span>
-                <span className="font-bold text-rose-950 text-sm">{selectedSubmission.soieSize}</span>
-              </div>
+              {selectedSubmission.product === 'Bra' && (
+                <>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col H: Padding</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.paddingOrRiseOrPref}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col I: Wire</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.wireOrPrefOrHip}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col J: Preference</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.preferenceValue || selectedSubmission.prefOrHipOrWaist}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col K: Under bust</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.underbustOrWaistOrPhone}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col L: Over Bust</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.overbustOrPhoneOrEmail}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col M: Contact Number</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.contactValue || selectedSubmission.phoneOrEmailOrSize}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col N: Email ID</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.emailValue || selectedSubmission.emailOrSize}</span>
+                  </div>
+                  <div className="flex justify-between py-2 bg-stone-100 px-2 rounded-lg">
+                    <span className="font-bold text-stone-800">Col O: Official Soie Size</span>
+                    <span className="font-bold text-stone-950 text-sm">{selectedSubmission.soieSize}</span>
+                  </div>
+                </>
+              )}
+
+              {selectedSubmission.product === 'Panty' && (
+                <>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col H: Rise</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.paddingOrRiseOrPref}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col I: Preference</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.preferenceValue || 'None'}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col J: All round Hip</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.hipValue || selectedSubmission.prefOrHipOrWaist}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col K: Contact Number</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.contactValue || selectedSubmission.underbustOrWaistOrPhone}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col L: Email ID</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.emailValue || selectedSubmission.overbustOrPhoneOrEmail}</span>
+                  </div>
+                  <div className="flex justify-between py-2 bg-stone-100 px-2 rounded-lg">
+                    <span className="font-bold text-stone-800">Col M: Official Soie Size</span>
+                    <span className="font-bold text-stone-950 text-sm">{selectedSubmission.soieSize}</span>
+                  </div>
+                </>
+              )}
+
+              {selectedSubmission.product === 'Shapewear' && (
+                <>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col H: Preference</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.preferenceValue || selectedSubmission.paddingOrRiseOrPref}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col I: All round Hip</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.hipValue || selectedSubmission.wireOrPrefOrHip}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col J: Contact Number</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.contactValue || selectedSubmission.prefOrHipOrWaist}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-stone-100">
+                    <span className="text-stone-500">Col K: Email ID</span>
+                    <span className="font-medium text-stone-900">{selectedSubmission.emailValue || selectedSubmission.underbustOrWaistOrPhone}</span>
+                  </div>
+                  <div className="flex justify-between py-2 bg-stone-100 px-2 rounded-lg">
+                    <span className="font-bold text-stone-800">Col L: Official Soie Size</span>
+                    <span className="font-bold text-stone-950 text-sm">{selectedSubmission.soieSize}</span>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="mt-4 flex justify-end">

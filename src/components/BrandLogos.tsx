@@ -35,7 +35,7 @@ export const SoieBrandLockup: React.FC<{ className?: string }> = ({ className = 
       <SoieOriginalLogo size="md" />
       <div className="flex flex-col">
         <span className="text-xs font-semibold text-stone-800 tracking-wider uppercase">
-          Ginza Industries Limited
+          SOIE
         </span>
         <span className="text-[11px] text-stone-500">
           Official Fit Consultation &amp; Sizing Portal
@@ -135,7 +135,7 @@ export const PantyMeasurementPhoto: React.FC<{
       >
         <img
           src="/images/panty.png"
-          alt="Panty · Hip & Waist Measuring Guide"
+          alt="Panty · Hip Measuring Guide"
           className="w-full h-full object-contain rounded-xl"
           onError={(e) => {
             (e.target as HTMLImageElement).src = 'https://i.ibb.co/jvKDJww8/panty.png';
@@ -143,7 +143,7 @@ export const PantyMeasurementPhoto: React.FC<{
         />
       </div>
       <span className="text-xs font-semibold text-stone-700 mt-1.5 tracking-wide">
-        Hip &amp; Waist Measuring Guide
+        Hip Measuring Guide
       </span>
     </div>
   );

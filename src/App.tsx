@@ -168,11 +168,7 @@ export default function App() {
         return false;
       }
       if (!formData.pantyHip) {
-        setFormError('Please complete Step 1: Select To Fit Hip (Cm) for Panty.');
-        return false;
-      }
-      if (!formData.pantyWaist) {
-        setFormError('Please complete Step 2: Select To Fit Waist (Cm) for Panty.');
+        setFormError('Please select To Fit Hip (Cm) for Panty.');
         return false;
       }
     }
@@ -182,11 +178,7 @@ export default function App() {
         return false;
       }
       if (!formData.shapewearHip) {
-        setFormError('Please complete Step 1: Select To Fit Hip (cm) for Shapewear.');
-        return false;
-      }
-      if (!formData.shapewearWaist) {
-        setFormError('Please complete Step 2: Select To Fit Waist (cm) for Shapewear.');
+        setFormError('Please select To Fit Hip (cm) for Shapewear.');
         return false;
       }
     }
@@ -468,7 +460,7 @@ export default function App() {
       <footer className="border-t border-stone-200 bg-white py-6 mt-12 text-center text-xs text-stone-600">
         <div className="max-w-4xl mx-auto px-4 space-y-2">
           <p className="font-semibold text-stone-800 tracking-wide text-sm">
-            SOIE · GINZA INDUSTRIES LIMITED
+            SOIE
           </p>
           <p className="text-xs text-stone-500">
             Official Intimate Wear Fit &amp; Size Consultation

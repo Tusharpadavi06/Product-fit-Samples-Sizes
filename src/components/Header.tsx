@@ -22,8 +22,6 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="bg-[#c5c6c7] text-slate-800 text-[11px] py-1.5 px-4 text-center tracking-wider font-semibold border-b border-[#a8aaab] flex items-center justify-center gap-2">
         <Sparkles className="w-3 h-3 text-slate-600" />
         <span>SOIE Fit Master · Official Intimate Size Consultation & Precision Form</span>
-        <span className="hidden sm:inline opacity-70">|</span>
-        <span className="hidden sm:inline text-slate-700">Ginza Industries Limited</span>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -40,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
             </div>
             <span className="text-[9.5px] tracking-wider text-stone-500 uppercase font-medium">
-              Ginza Industries Limited · Fit Portal
+              Fit Consultation &amp; Sizing Portal
             </span>
           </div>
         </div>

@@ -218,12 +218,6 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
                       {rec.hipValue || rec.rawFormData?.pantyHip || rec.prefOrHipOrWaist}
                     </span>
                   </div>
-                  <div>
-                    <span className="text-slate-500 block">Waist:</span>
-                    <span className="font-medium text-slate-800">
-                      {rec.waistValue || rec.rawFormData?.pantyWaist || rec.underbustOrWaistOrPhone}
-                    </span>
-                  </div>
                 </>
               )}
 
@@ -239,12 +233,6 @@ export const SuccessReceipt: React.FC<SuccessReceiptProps> = ({
                     <span className="text-slate-500 block">Hip:</span>
                     <span className="font-medium text-slate-800">
                       {rec.hipValue || rec.rawFormData?.shapewearHip || rec.wireOrPrefOrHip}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-slate-500 block">Waist:</span>
-                    <span className="font-medium text-slate-800">
-                      {rec.waistValue || rec.rawFormData?.shapewearWaist || rec.prefOrHipOrWaist}
                     </span>
                   </div>
                 </>

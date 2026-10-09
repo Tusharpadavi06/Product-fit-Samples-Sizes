@@ -280,41 +280,47 @@ export const GoogleSheetModal: React.FC<GoogleSheetModalProps> = ({
                     <td className="p-2 font-mono font-bold bg-stone-50">Col I</td>
                     <td className="p-2">Wire (Wired Non wired / Non Wired)</td>
                     <td className="p-2">Preference if any</td>
-                    <td className="p-2">All round Hip</td>
+                    <td className="p-2 font-semibold">All round Hip</td>
                   </tr>
                   <tr>
                     <td className="p-2 font-mono font-bold bg-stone-50">Col J</td>
                     <td className="p-2">Preference if any</td>
-                    <td className="p-2">All round Hip</td>
-                    <td className="p-2">All round Waist</td>
+                    <td className="p-2 font-semibold">All round Hip</td>
+                    <td className="p-2">Contact Number</td>
                   </tr>
                   <tr>
                     <td className="p-2 font-mono font-bold bg-stone-50">Col K</td>
                     <td className="p-2 font-medium">Under bust</td>
-                    <td className="p-2 font-medium">All round Waist</td>
-                    <td className="p-2 font-medium">Contact Number</td>
-                  </tr>
-                  <tr>
-                    <td className="p-2 font-mono font-bold bg-stone-50">Col L</td>
-                    <td className="p-2 font-medium">Over Bust</td>
                     <td className="p-2 font-medium">Contact Number</td>
                     <td className="p-2 font-medium">Email id</td>
                   </tr>
                   <tr>
+                    <td className="p-2 font-mono font-bold bg-stone-50">Col L</td>
+                    <td className="p-2 font-medium">Over Bust</td>
+                    <td className="p-2 font-medium">Email id</td>
+                    <td className="p-2 font-bold text-rose-700">Soie Size</td>
+                  </tr>
+                  <tr>
                     <td className="p-2 font-mono font-bold bg-stone-50">Col M</td>
                     <td className="p-2">Contact Number</td>
-                    <td className="p-2">Email id</td>
                     <td className="p-2 font-bold text-rose-700">Soie Size</td>
+                    <td className="p-2 font-semibold text-emerald-700">Interested Status</td>
                   </tr>
                   <tr>
                     <td className="p-2 font-mono font-bold bg-stone-50">Col N</td>
                     <td className="p-2">Email id</td>
-                    <td className="p-2 font-bold text-rose-700">Soie Size</td>
+                    <td className="p-2 font-semibold text-emerald-700">Interested Status</td>
+                    <td className="p-2 text-stone-400">-</td>
+                  </tr>
+                  <tr>
+                    <td className="p-2 font-mono font-bold bg-stone-50">Col O</td>
+                    <td className="p-2 text-rose-900 font-bold">Soie Size</td>
+                    <td className="p-2 text-stone-400">-</td>
                     <td className="p-2 text-stone-400">-</td>
                   </tr>
                   <tr className="bg-rose-50/70 font-semibold">
-                    <td className="p-2 font-mono font-bold bg-rose-100 text-rose-900">Col O</td>
-                    <td className="p-2 text-rose-900 font-bold">Soie Size</td>
+                    <td className="p-2 font-mono font-bold bg-rose-100 text-rose-900">Col P</td>
+                    <td className="p-2 text-emerald-700 font-semibold">Sample Interested</td>
                     <td className="p-2 text-stone-400">-</td>
                     <td className="p-2 text-stone-400">-</td>
                   </tr>
