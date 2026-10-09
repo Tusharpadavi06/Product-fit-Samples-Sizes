@@ -38,8 +38,6 @@ import {
   Send,
   Loader2,
   AlertCircle,
-  CheckSquare,
-  Square,
   Sparkles,
 } from 'lucide-react';
 
@@ -274,72 +272,39 @@ export default function App() {
                     </p>
                   </div>
 
-                  {/* Included Products Selection Pills (All 3 selected by default) */}
-                  <div className="bg-stone-50 p-3.5 sm:p-4 rounded-2xl border border-stone-200 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-stone-800 flex items-center gap-1.5">
+                  {/* Products Included in this Consultation (All 3 Included) */}
+                  <div className="bg-stone-50 p-3.5 sm:p-4 rounded-2xl border border-stone-200 space-y-2.5">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                      <span className="text-xs sm:text-[13px] font-bold text-stone-900 flex items-center gap-1.5">
                         <Sparkles className="w-3.5 h-3.5 text-stone-700" />
                         Products Included in this Consultation:
                       </span>
-                      <span className="text-[11px] text-stone-500 hidden sm:inline">
+                      <span className="text-[11px] text-stone-500">
                         Each product data routes to its own sheet tab
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
-                      {/* Bra Checkbox */}
-                      <button
-                        type="button"
-                        onClick={() => handleUpdateFormData({ includeBra: !formData.includeBra })}
-                        className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer ${
-                          formData.includeBra
-                            ? 'bg-white border-stone-800 shadow-2xs text-stone-900 font-semibold ring-1 ring-stone-800'
-                            : 'bg-white/60 border-stone-200 text-stone-500 hover:bg-white'
-                        }`}
-                      >
-                        {formData.includeBra ? (
-                          <CheckSquare className="w-4 h-4 text-stone-900 flex-shrink-0" />
-                        ) : (
-                          <Square className="w-4 h-4 text-stone-400 flex-shrink-0" />
-                        )}
-                        <span className="text-xs sm:text-[13px]">1. Bra Fit &amp; Sizing</span>
-                      </button>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-0.5">
+                      {/* 1. Bra */}
+                      <div className="flex items-center p-3 rounded-xl border border-stone-200 bg-white shadow-2xs text-stone-900">
+                        <span className="text-xs sm:text-[13px] font-semibold text-stone-800">
+                          1. Bra
+                        </span>
+                      </div>
 
-                      {/* Panty Checkbox */}
-                      <button
-                        type="button"
-                        onClick={() => handleUpdateFormData({ includePanty: !formData.includePanty })}
-                        className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer ${
-                          formData.includePanty
-                            ? 'bg-white border-stone-800 shadow-2xs text-stone-900 font-semibold ring-1 ring-stone-800'
-                            : 'bg-white/60 border-stone-200 text-stone-500 hover:bg-white'
-                        }`}
-                      >
-                        {formData.includePanty ? (
-                          <CheckSquare className="w-4 h-4 text-stone-900 flex-shrink-0" />
-                        ) : (
-                          <Square className="w-4 h-4 text-stone-400 flex-shrink-0" />
-                        )}
-                        <span className="text-xs sm:text-[13px]">2. Panty Sizing</span>
-                      </button>
+                      {/* 2. Panty */}
+                      <div className="flex items-center p-3 rounded-xl border border-stone-200 bg-white shadow-2xs text-stone-900">
+                        <span className="text-xs sm:text-[13px] font-semibold text-stone-800">
+                          2. Panty
+                        </span>
+                      </div>
 
-                      {/* Shapewear Checkbox */}
-                      <button
-                        type="button"
-                        onClick={() => handleUpdateFormData({ includeShapewear: !formData.includeShapewear })}
-                        className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer ${
-                          formData.includeShapewear
-                            ? 'bg-white border-stone-800 shadow-2xs text-stone-900 font-semibold ring-1 ring-stone-800'
-                            : 'bg-white/60 border-stone-200 text-stone-500 hover:bg-white'
-                        }`}
-                      >
-                        {formData.includeShapewear ? (
-                          <CheckSquare className="w-4 h-4 text-stone-900 flex-shrink-0" />
-                        ) : (
-                          <Square className="w-4 h-4 text-stone-400 flex-shrink-0" />
-                        )}
-                        <span className="text-xs sm:text-[13px]">3. Shapewear Contour</span>
-                      </button>
+                      {/* 3. Shapewear */}
+                      <div className="flex items-center p-3 rounded-xl border border-stone-200 bg-white shadow-2xs text-stone-900">
+                        <span className="text-xs sm:text-[13px] font-semibold text-stone-800">
+                          3. Shapewear
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
